@@ -1,0 +1,1 @@
+﻿{"ContextClassName":"PokemonContext","DefaultDacpacSchema":null,"IdReplace":false,"IncludeConnectionString":true,"OutputPath":"","ProjectRootNamespace":"ShinyPokemon","SelectedToBeGenerated":0,"Tables":["dbo.Pokemon"],"UseDatabaseNames":false,"UseFluentApiOnly":true,"UseHandleBars":false,"UseInflector":true}
