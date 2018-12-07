@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +9,12 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   title = 'app';
 
-  constructor(private http: HttpClient) {
-  }
-  //http://localhost:51545/api/pokemon/shinies 
+  //constructor(private http: HttpClient) {}
+  constructor() { }
+
   ngOnInit(): void {
-    this.http.get('https://api.github.com/users/seeschweiler').subscribe(data => {
+    /*this.http.get('http://localhost:51545/api/pokemon/shinies').subscribe(data => {
       console.log(data);
-    });
+    });*/
   }
 }

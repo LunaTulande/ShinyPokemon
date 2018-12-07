@@ -1,3 +1,24 @@
-<p>
-  home-pokemon works!
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Shiny Pokemon</title>
+  <meta name="description" content="     ">
+  <meta name="keywords" content="Shiny, Pokemon">
+  <meta name="author" content="Luna Tulande">
+  <meta name="generator" content="Microsoft Visual Studio, Microsoft Visual Studio Code">
+  <meta name="robots" content="index,follow">
+  <meta http-equiv="refresh" content="3481">
+  <meta charset="UTF-8">
+</head>
+<body>
+  <h1>Shiny Pokemon Home</h1>
+  <p>
+    home-pokemon works!
+  </p>
+  <div>
+    <ul>
+      <li *ngFor="let pokemon of shinyPokemonList">{{pokemon.name}}</li>
+    </ul>
+  </div>
+  </body>
+</html>
