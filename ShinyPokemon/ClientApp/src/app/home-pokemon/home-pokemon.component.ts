@@ -9,8 +9,9 @@ import { Pokemon } from '../pokemon';
   styleUrls: ['./home-pokemon.component.css']
 })
 export class HomePokemonComponent implements OnInit {
-  private apiUrl = 'http://localhost:51545/api/pokemon/shinies';
+  private apiUrl = 'http://localhost:50455/api/pokemon/shinies';
   shinyPokemonList: Pokemon[];
+  showShiny: boolean = false;
 
   constructor(private http: HttpClient) {
     this.http.get<Pokemon[]>(this.apiUrl).subscribe(data => {

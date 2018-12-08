@@ -11,14 +11,35 @@
   <meta charset="UTF-8">
 </head>
 <body>
-  <h1>Shiny Pokemon Home</h1>
+  <h1>Shiny Pokemon</h1>
   <p>
-    home-pokemon works!
+    List of all shinies pokemons in Pokemon Go
   </p>
-  <div>
+
+  <label>Show only shiny</label>
+  <input type="checkbox" aria-label="Shiny" [(ngModel)]="showShiny">
+
+  <div class="row">
+    <div *ngFor="let pokemon of shinyPokemonList" class="col-xs-6 col-md-4">
+      <div class="thumbnail">
+        
+        <table><tr><td><img src="{{pokemon.img}}" *ngIf="!showShiny"></td>
+        <td><img src="{{pokemon.imgShiny}}" *ngIf="!showShiny"></td></tr></table>
+        
+        
+        <img src="{{pokemon.imgShiny}}" *ngIf="showShiny">
+        
+        <div class="caption">
+          <h3>#{{pokemon.number}} {{pokemon.name}}</h3>
+          <p>...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--<div>
     <ul>
       <li *ngFor="let pokemon of shinyPokemonList">{{pokemon.name}}</li>
     </ul>
-  </div>
-  </body>
+  </div>-->
+</body>
 </html>

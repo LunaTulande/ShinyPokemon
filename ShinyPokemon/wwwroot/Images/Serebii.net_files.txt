@@ -1,0 +1,9 @@
+Serebii.net_files
+
+Normal:
+
+https://www.serebii.net/pokemongo/pokemon.shtml
+
+Shinies:
+
+https://www.serebii.net/pokemongo/shiny.shtml
