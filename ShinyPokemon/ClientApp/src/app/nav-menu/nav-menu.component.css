@@ -32,9 +32,10 @@ li.link-active a:focus {
     }
     .navbar-header {
         float: left;
-        width: 15%;
         border-right: 1px solid #bbb;
-        
+    }
+    .navbar-header a {
+        min-width: 160px;
     }
     .navbar-collapse {
         border-top: 1px solid #444;
