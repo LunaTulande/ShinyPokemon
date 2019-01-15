@@ -1,45 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Shiny Pokemon</title>
-  <meta name="description" content="     ">
-  <meta name="keywords" content="Shiny, Pokemon">
-  <meta name="author" content="Luna Tulande">
-  <meta name="generator" content="Microsoft Visual Studio, Microsoft Visual Studio Code">
-  <meta name="robots" content="index,follow">
-  <meta http-equiv="refresh" content="3481">
-  <meta charset="UTF-8">
-</head>
-<body>
-  <h1>Shiny Pokemon</h1>
-  <p>
-    List of all shinies pokemons in Pokemon Go
-  </p>
-
-  <label>Show only shiny</label>
-  <input type="checkbox" aria-label="Shiny" [(ngModel)]="showShiny">
+<main>
+  <div class="page-header">
+    <h1>Shiny Pokemon</h1>
+    <p>All pokemons avalible in Pokemon Go so far</p>
+  </div>
 
   <div class="row">
-    <div *ngFor="let pokemon of shinyPokemonList" class="col-xs-6 col-md-4">
-      <div class="thumbnail">
-        
-        <table><tr><td><img src="{{pokemon.img}}" *ngIf="!showShiny"></td>
-        <td><img src="{{pokemon.imgShiny}}" *ngIf="!showShiny"></td></tr></table>
-        
-        
-        <img src="{{pokemon.imgShiny}}" *ngIf="showShiny">
-        
-        <div class="caption">
-          <h3>#{{pokemon.number}} {{pokemon.name}}</h3>
-          <p>...</p>
-        </div>
-      </div>
+    <div class="col-md-9">
+      <div *ngFor="let pokemon of shinyPokemonList" class="col-md-4"> 
+
+        <div class="thumbnail">
+
+          <img src="{{pokemon.imgShiny}}" *ngIf="!showShiny">
+
+          <div class="caption">
+            <h3>#{{pokemon.number}} {{pokemon.name}}</h3>
+            <p></p>
+          </div>
+        </div> <!-- thumbnail -->
+
+      </div> <!-- ngFor-loop -->
+    </div> <!-- col 9 -->
+
+    <div class="list-group" class="col-md-3">
+      <button type="button" class="list-group-item">All shinies pokemons</button>
+      <button type="button" class="list-group-item">Gen 1</button>
+      <button type="button" class="list-group-item">Gen 2</button>
+      <button type="button" class="list-group-item">Gen 3</button>
+      <button type="button" class="list-group-item">Gen 4</button>
+      <button type="button" class="list-group-item">Alola forms</button>
     </div>
-  </div>
-  <!--<div>
+
+  </div> <!-- row -->
+</main> <!--  -->
+
+<!--<div>
     <ul>
       <li *ngFor="let pokemon of shinyPokemonList">{{pokemon.name}}</li>
     </ul>
   </div>-->
-</body>
-</html>
+
+<!-- <table>
+            <tr>
+              <td><img src="{{pokemon.img}}" *ngIf="!showShiny"></td>
+              <td><img src="{{pokemon.imgShiny}}" *ngIf="!showShiny"></td>
+            </tr>
+          </table> -->
+
+<!--<div class="checkbox" id="checkbox">
+      <label><input type="checkbox" [(ngModel)]="showShiny">Show only shiny</label>
+    </div> --> 
