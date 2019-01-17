@@ -10,7 +10,7 @@
         <div class="thumbnail">
 
           <img src="{{pokemon.imgShiny}}"> <!-- *ngIf="showShiny" -->
-
+          
           <div class="caption">
             <h3>#{{pokemon.number}} {{pokemon.name}}</h3>
             <p></p>
@@ -20,7 +20,7 @@
     </div> <!-- col 9 -->
 
     <div class="col-md-3"> <!-- right menu -->
-      <ul class="nav nav-pills nav-stacked">
+      <ul class="nav nav-pills nav-stacked" >
         <button type="button" class="list-group-item active">
           <a (click)="showAll()"> All Shinies </a>
         </button>
