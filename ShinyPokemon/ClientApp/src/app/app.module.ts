@@ -9,12 +9,6 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { HomePokemonComponent } from './home-pokemon/home-pokemon.component';
-import { ShinyListComponent } from './shiny-list/shiny-list.component';
-import { SelectMenuComponent } from './select-menu/select-menu.component';
-
-const appRoutes: Routes = [
-  {path: 'shiny-list', component: ShinyListComponent},
-];
 
 @NgModule({
   declarations: [
@@ -22,9 +16,7 @@ const appRoutes: Routes = [
     NavMenuComponent,
     CounterComponent,
     FetchDataComponent,
-    HomePokemonComponent,
-    ShinyListComponent,
-    SelectMenuComponent
+    HomePokemonComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -34,7 +26,6 @@ const appRoutes: Routes = [
       { path: '', component: HomePokemonComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'shiny-list', component: ShinyListComponent },
     ])
   ],
   providers: [],
