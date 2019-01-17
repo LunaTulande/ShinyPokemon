@@ -1,16 +1,20 @@
 <main>
   <div class="page-header">
     <h1>Shiny Pokemon</h1>
-    <p>All pokemons avalible in Pokemon Go so far</p>
+    <p>All shinies pokemons avalible in Pokemon Go so far</p>
   </div>
 
   <div class="row">
     <div class="col-md-9">
+      <h2>{{subtitle}} Shinies Pokemons</h2>
       <div *ngFor="let pokemon of showList" class="col-md-4"> 
         <div class="thumbnail">
-
-          <img src="{{pokemon.imgShiny}}"> <!-- *ngIf="showShiny" -->
           
+          <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]" >
+            <img src="{{pokemon.imgShiny}}"> <!-- *ngIf="showShiny" -->
+            <!-- <app-pokemon-detail [pokemonID]="pokemon.id"></app-pokemon-detail> -->
+          </a>
+
           <div class="caption">
             <h3>#{{pokemon.number}} {{pokemon.name}}</h3>
             <p></p>

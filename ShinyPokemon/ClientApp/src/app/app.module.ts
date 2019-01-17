@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { HomePokemonComponent } from './home-pokemon/home-pokemon.component';
+import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HomePokemonComponent } from './home-pokemon/home-pokemon.component';
     NavMenuComponent,
     CounterComponent,
     FetchDataComponent,
-    HomePokemonComponent
+    HomePokemonComponent,
+    PokemonDetailComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -26,6 +28,7 @@ import { HomePokemonComponent } from './home-pokemon/home-pokemon.component';
       { path: '', component: HomePokemonComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'pokemon-detail/:id', component: PokemonDetailComponent },
     ])
   ],
   providers: [],
