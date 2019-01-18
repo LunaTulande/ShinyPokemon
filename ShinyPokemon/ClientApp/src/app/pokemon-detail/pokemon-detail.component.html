@@ -1,6 +1,41 @@
 <main>
-  <div class="page-header">
+  <header class="page-header">
     <h1>{{pokemon?.name}}</h1>
-    <p>pokemon-detail works!</p>
-  </div>
+  </header>
+
+  <section class="row">
+    <span class="col-sm-3"></span>
+    <span class="col-sm-6">
+      <table>
+        <tr>
+          <td>
+            <ul>
+              <li>Generation: {{pokemon?.generation}}</li>
+              <li>Evolutions: 2</li>
+              <li>Release Date: 25-Mar-2018</li>
+              <li>Event: Community Day #2</li>
+            </ul>
+          </td>
+          <td>
+            <figure><img src="{{pokemon?.imgShiny}}" *ngIf="!showShiny">
+              <figcaption>Shiny</figcaption>
+            </figure>
+          </td>
+          <td>
+            <figure><img src="{{pokemon?.img}}" *ngIf="!showShiny">
+              <figcaption>Normal</figcaption>
+            </figure>
+          </td>
+        </tr>
+      </table>
+    </span>
+    <span class="col-sm-3"></span>
+  </section>
+
+  <footer>
+    <button type="button">
+      <a [routerLink]='["/"]'>Back</a>
+    </button>
+  </footer>
+
 </main>

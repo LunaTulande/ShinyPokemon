@@ -1,0 +1,13 @@
+h1, figcaption {
+    text-align: center;
+}
+table {
+    margin: auto;
+}
+footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    margin: 40px 0 20px;
+    border-top: 1px solid #eee;
+}
