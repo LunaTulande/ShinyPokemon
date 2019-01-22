@@ -10,6 +10,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { HomePokemonComponent } from './home-pokemon/home-pokemon.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
+import { ScrollTopComponent } from './scroll-top/scroll-top.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.componen
     CounterComponent,
     FetchDataComponent,
     HomePokemonComponent,
-    PokemonDetailComponent
+    PokemonDetailComponent,
+    ScrollTopComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
