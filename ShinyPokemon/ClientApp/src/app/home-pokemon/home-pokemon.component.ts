@@ -13,6 +13,7 @@ export class HomePokemonComponent implements OnInit {
   shinyPokemonList: Pokemon[]; //first list
   showList: Pokemon[]; //List to show
   subtitle: string;
+  search: string = '';
 
   constructor(private http: HttpClient) {
     this.http.get<Pokemon[]>(this.apiUrl).subscribe(data => {
@@ -32,7 +33,6 @@ export class HomePokemonComponent implements OnInit {
     this.showList = this.shinyPokemonList.filter(pokemon => pokemon.generation == gen);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

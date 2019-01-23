@@ -11,6 +11,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { HomePokemonComponent } from './home-pokemon/home-pokemon.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { ScrollTopComponent } from './scroll-top/scroll-top.component';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ScrollTopComponent } from './scroll-top/scroll-top.component';
     FetchDataComponent,
     HomePokemonComponent,
     PokemonDetailComponent,
-    ScrollTopComponent
+    ScrollTopComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
