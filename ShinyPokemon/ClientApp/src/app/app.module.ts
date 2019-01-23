@@ -13,6 +13,7 @@ import { HomeMenuComponent } from './home-menu/home-menu.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { ScrollTopComponent } from './scroll-top/scroll-top.component';
 import { SearchPipe } from './search.pipe';
+import { PokemonService } from './pokemon.service';
 
 @NgModule({
   declarations: [
@@ -32,12 +33,12 @@ import { SearchPipe } from './search.pipe';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomePokemonComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      // { path: 'counter', component: CounterComponent },
+      // { path: 'fetch-data', component: FetchDataComponent },
       { path: 'pokemon-detail/:id', component: PokemonDetailComponent },
     ])
   ],
-  providers: [],
+  providers: [PokemonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

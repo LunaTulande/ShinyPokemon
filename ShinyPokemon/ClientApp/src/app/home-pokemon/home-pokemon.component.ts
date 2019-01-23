@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../pokemon';
+import { PokemonService } from '../pokemon.service';
 
 @Component({
   selector: 'app-home-pokemon',
@@ -9,18 +9,19 @@ import { Pokemon } from '../pokemon';
 })
 
 export class HomePokemonComponent implements OnInit {
-  private apiUrl = 'http://localhost:50455/api/pokemon/shinies'; // filtro de solo shinies desde servidor: PokemonRepository y PokemonController
   shinyPokemonList: Pokemon[]; //first list
   showList: Pokemon[]; //List to show
   subtitle: string;
   search: string = '';
 
-  constructor(private http: HttpClient) {
-    this.http.get<Pokemon[]>(this.apiUrl).subscribe(data => {
+  constructor(private pokemonService: PokemonService) { }
+
+  getPokemons(): void {
+    this.pokemonService.getPokemons().subscribe(data => {
       console.log(data);
       this.shinyPokemonList = data;
       this.showAll();
-    });
+    })
   }
 
   showAll(): void {
@@ -33,6 +34,8 @@ export class HomePokemonComponent implements OnInit {
     this.showList = this.shinyPokemonList.filter(pokemon => pokemon.generation == gen);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getPokemons();
+  }
 
 }
