@@ -16,6 +16,10 @@ export class HomePokemonComponent implements OnInit {
 
   constructor(private pokemonService: PokemonService) { }
 
+  ngOnInit(): void {
+    this.getPokemons();
+  }
+
   getPokemons(): void {
     this.pokemonService.getPokemons().subscribe(data => {
       console.log(data);
@@ -24,18 +28,15 @@ export class HomePokemonComponent implements OnInit {
     })
   }
 
+  setWhatToShow(eventValue) {
+    this.showList = eventValue.showList;
+    this.subtitle = eventValue.subtitle;
+    //this.search = eventValue.search;
+  }
+
   showAll(): void {
     this.subtitle = 'All';
     this.showList = this.shinyPokemonList;
-  }
-
-  showGeneration(gen: number): void{
-    this.subtitle = 'Gen ' + gen;
-    this.showList = this.shinyPokemonList.filter(pokemon => pokemon.generation == gen);
-  }
-
-  ngOnInit(): void {
-    this.getPokemons();
   }
 
 }

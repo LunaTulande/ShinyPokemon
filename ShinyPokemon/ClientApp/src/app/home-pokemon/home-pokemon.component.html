@@ -1,5 +1,5 @@
 <main>
-  <app-home-menu></app-home-menu>
+  <app-home-menu [shinyPokemonList]= "shinyPokemonList" (whatToShow)="setWhatToShow($event)"></app-home-menu>
 
 
   <div class="page-header">
@@ -32,7 +32,7 @@
     </div> <!-- col 9 -->
 
     <div class="col-md-3"> <!-- right menu -->
-      <ul class="nav nav-pills nav-stacked" >
+      <!-- <ul class="nav nav-pills nav-stacked" >
         <button type="button" class="list-group-item active">
           <a (click)="showAll()"> All Shinies </a>
         </button>
@@ -49,7 +49,7 @@
             <a (click)="showGeneration(4)">Gen 4</a>
         </button>
         <button type="button" class="list-group-item disabled">Alola forms</button>
-      </ul>
+      </ul> -->
     </div> <!-- col-3 -->
     
     <app-scroll-top></app-scroll-top>
