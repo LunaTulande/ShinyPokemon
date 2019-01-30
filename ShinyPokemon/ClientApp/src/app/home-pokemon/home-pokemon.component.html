@@ -9,7 +9,7 @@
 
   <div id="section">
     <h3>{{subtitle}} Shinies Pok&eacute;mons</h3>
-    <div *ngFor="let pokemon of showList | search:search" class="" id="pokemons">
+    <div *ngFor="let pokemon of showList | search:search" id="pokemons">
       <div class="thumbnail">
 
         <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
@@ -17,7 +17,7 @@
         </a>
 
         <div class="caption">
-          <h5>#{{pokemon.number}} {{pokemon.name}}</h5>
+          <h5>#{{pokemon.number}} <br> {{pokemon.name}}</h5>
         </div>
       </div> <!-- thumbnail -->
     </div> <!-- ngFor-loop -->
