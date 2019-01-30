@@ -11,7 +11,6 @@ export class HomeMenuComponent implements OnInit {
   @Output() whatToShow: EventEmitter<{showList: Pokemon[], subtitle: string}> = new EventEmitter();
   showList: Pokemon[]; //List to show
   subtitle: string;
-  search: string = '';
 
   constructor() { }
   ngOnInit() { }

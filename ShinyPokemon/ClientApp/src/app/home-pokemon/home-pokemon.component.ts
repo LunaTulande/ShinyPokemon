@@ -11,7 +11,7 @@ import { PokemonService } from '../pokemon.service';
 export class HomePokemonComponent implements OnInit {
   shinyPokemonList: Pokemon[]; //first list
   showList: Pokemon[]; //List to show
-  subtitle: string;
+  subtitle: string = 'All';
   search: string = '';
 
   constructor(private pokemonService: PokemonService) { }
@@ -24,19 +24,13 @@ export class HomePokemonComponent implements OnInit {
     this.pokemonService.getPokemons().subscribe(data => {
       console.log(data);
       this.shinyPokemonList = data;
-      this.showAll();
+      this.showList = this.shinyPokemonList;
     })
   }
 
   setWhatToShow(eventValue) {
     this.showList = eventValue.showList;
     this.subtitle = eventValue.subtitle;
-    //this.search = eventValue.search;
-  }
-
-  showAll(): void {
-    this.subtitle = 'All';
-    this.showList = this.shinyPokemonList;
   }
 
 }

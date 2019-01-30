@@ -1,4 +1,37 @@
 .row {
-    margin-right: 0px;
-    padding-right: 0px;
+  margin-right: 0px;
+  padding-right: 0px;
+}
+
+main {
+  text-align: center;
+}
+
+input[type="text"] {
+  width: 400px;
+  text-align: center;
+}
+
+input:hover {
+  border: 1px solid #999;
+  border-radius: 5px;
+}
+
+#section {
+  margin: auto;
+  width: 50%;
+}
+
+h3 {
+  padding-bottom: 10px;
+}
+
+.thumbnail{
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+#pokemons {
+    width: 150px;
+    display: inline-block;
+    
 }

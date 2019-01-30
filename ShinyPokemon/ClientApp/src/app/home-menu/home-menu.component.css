@@ -1,5 +1,27 @@
-li {
-    cursor: pointer;
-    width:75px;
-    text-align: center;
+#menu {
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
 }
+
+#menu li {
+  display: inline-block;
+  float: none;
+  cursor: pointer;
+  width: 75px;
+}
+
+#menu li a:hover {
+    background-color: #eceaec;
+    border-radius: 10px;
+}
+
+/* #menu li a:active {
+    background-color: #eceaec;
+    border-radius: 5px;
+}
+
+.selected {
+    background-color: #CFD8DC !important;
+    color: white; 
+  }*/
