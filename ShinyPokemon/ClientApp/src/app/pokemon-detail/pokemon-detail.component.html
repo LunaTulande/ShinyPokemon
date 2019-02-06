@@ -1,6 +1,11 @@
 <main>
+  <nav>
+    <!-- enlace a pokemon anterior (der) y siguiente (izq) 
+    <a [routerLink]="['/pokemon-detail', pokemon?.idpokemon-1]">test</a>-->
+  </nav>
+  
   <header class="page-header">
-    <h1>{{pokemon?.name}}</h1>
+    <h1>#{{pokemon?.number}} {{pokemon?.name}}</h1>
   </header>
 
   <section>
@@ -13,10 +18,13 @@
     <div>
       <ul>
         <li>Generation: {{pokemon?.generation}}</li>
-        <li>Evolutions: 2</li>
-        <li>Release Date: 25-Mar-2018</li>
-        <li>Event: Community Day #2</li>
+        <li>Shiny Release Date: {{pokemon?.shinyReleaseDate | date : 'MMM dd, yyyy'}}</li>
+        <li>Event: {{pokemon?.shinyReleaseEvent}}</li>
       </ul>
+    </div>
+    <div>
+      <h3>Evolutions Line</h3>
+      <!-- linea evolutiva imagenes link -->
     </div>
   </section>
 

@@ -1,11 +1,9 @@
 <div class="container-fluid">
   <nav class="navbar navbar-default">
     <ul class="nav navbar-nav" id="menu">
-      <li><a (click)="onChange(showAll())">All</a></li>
-      <li><a (click)="onChange(showGeneration(1))">Gen 1</a></li>
-      <li><a (click)="onChange(showGeneration(2))">Gen 2</a></li>
-      <li><a (click)="onChange(showGeneration(3))">Gen 3</a></li>
-      <li><a (click)="onChange(showGeneration(4))">Gen 4</a></li>
+      <li *ngFor="let gen of generations" [class.selected]="gen === selectedGen" (click)="onSelected(gen)">
+        <a (click)="onChange(showGeneration(gen))" >Gen {{gen}}</a>
+      </li>
     </ul>
   </nav>
 </div>

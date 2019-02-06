@@ -6,4 +6,8 @@ export interface Pokemon {
         shiny: boolean;
         img: string;
         imgShiny: string;
+        shinyReleaseDate: Date;
+        shinyReleaseEvent: string;
+        evolutionFrom: number;
+        evolutionTo: number;
 }

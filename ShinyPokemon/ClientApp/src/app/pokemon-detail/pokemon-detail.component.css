@@ -20,6 +20,7 @@ footer {
 @media only screen and (max-width: 600px) {
     figure{
         display: inline-block;
+        font-weight: bold;
     }
     ul{
         list-style-type: none;
