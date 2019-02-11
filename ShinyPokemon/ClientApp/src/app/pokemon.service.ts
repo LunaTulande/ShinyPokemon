@@ -7,7 +7,8 @@ import { Pokemon } from './pokemon';
 export class PokemonService {
   //conection to the "data base" througt the PokemonRepository & PokemonController from server  
   private apiUrl = 'http://localhost:50455/api/pokemon/shinies'; 
-  
+  pokemonList: Pokemon[];
+
   constructor(private http: HttpClient) { }
 
   getPokemons(): Observable<Pokemon[]> {

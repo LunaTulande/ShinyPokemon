@@ -1,37 +1,26 @@
-/* h1, figcaption {
-    text-align: center;
+figure{
+    display: inline-block;
+    font-weight: bold;
 }
-table {
-    margin: auto;
+ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 30px 0px;
 }
-footer {
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    margin: 40px 0 20px;
-    border-top: 1px solid #eee;
-}
-.row {
-    margin-right: 0px;
-    padding-right: 0px;
-} */
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    figure{
-        display: inline-block;
-        font-weight: bold;
-    }
-    ul{
-        list-style-type: none;
-        padding: 0;
-        margin: 30px 0px;
-    }
+    
     footer{
         display: none;
     }
 }
   
+@media (orientation: landscape) and (max-width: 850px) {
+    footer{
+        display: none;
+    }
+}
   /* Small devices (portrait tablets and large phones, 600px and up) */
   @media only screen and (min-width: 600px) {
   
@@ -39,7 +28,7 @@ footer {
   
   /* Medium devices (landscape tablets, 768px and up) */
   @media only screen and (min-width: 768px) {
-  
+    
   } 
   
   /* Large devices (laptops/desktops, 992px and up) */

@@ -17,10 +17,6 @@ export class HomeMenuComponent implements OnInit {
   constructor() { }
   ngOnInit() { }
 
-  onChange() {
-    this.whatToShow.emit({ showList: this.showList, subtitle: this.subtitle });
-  }
-
   onSelected(gen: number) {
     if (this.selectedGen == gen) {
       this.selectedGen = 0;
@@ -37,5 +33,6 @@ export class HomeMenuComponent implements OnInit {
       this.subtitle = 'Gen ' + gen;
       this.showList = this.shinyPokemonList.filter(pokemon => pokemon.generation == gen);
     }
+    this.whatToShow.emit({ showList: this.showList, subtitle: this.subtitle });
   }
 }

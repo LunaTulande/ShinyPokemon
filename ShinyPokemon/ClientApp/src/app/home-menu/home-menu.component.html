@@ -2,7 +2,7 @@
   <nav class="navbar navbar-default">
     <ul class="nav navbar-nav" id="menu">
       <li *ngFor="let gen of generations" [class.selected]="gen === selectedGen" (click)="onSelected(gen)">
-        <a (click)="onChange(showGeneration(gen))" >Gen {{gen}}</a>
+        <a (click)="showGeneration(gen)" >Gen {{gen}}</a>
       </li>
     </ul>
   </nav>
