@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -33,8 +33,6 @@ import { PokemonService } from './pokemon.service';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomePokemonComponent, pathMatch: 'full' },
-      // { path: 'counter', component: CounterComponent },
-      // { path: 'fetch-data', component: FetchDataComponent },
       { path: 'pokemon-detail/:id', component: PokemonDetailComponent },
     ])
   ],

@@ -1,49 +1,73 @@
-figure{
-    display: inline-block;
-    font-weight: bold;
-}
-ul{
-    list-style-type: none;
-    padding: 0;
-    margin: 30px 0px;
+.row {
+  margin-right: 0px;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    
-    footer{
-        display: none;
-    }
+#right {
+  float: right;
+  margin-right: 15px;
 }
-  
-@media (orientation: landscape) and (max-width: 850px) {
-    footer{
-        display: none;
-    }
+
+#left {
+  float: left;
+  margin-left: 30px;
 }
-  /* Small devices (portrait tablets and large phones, 600px and up) */
-  @media only screen and (min-width: 600px) {
-  
-  } 
-  
-  /* Medium devices (landscape tablets, 768px and up) */
-  @media only screen and (min-width: 768px) {
-    
-  } 
-  
-  /* Large devices (laptops/desktops, 992px and up) */
-  @media only screen and (min-width: 992px) {
-  
-  } 
-  
-  /* Extra large devices (large laptops and desktops, 1200px and up) */
-  @media only screen and (min-width: 1200px) {
-  
+
+.btn-default {
+  margin-top: 8px;
+  border-color: transparent;
+}
+
+.btn-default a {
+  color: #777;
+}
+
+.btn-default:hover {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.btn-default:hover a {
+  color: #333;
+  text-decoration: none;
+}
+
+.page-header {
+    margin-top: 0px;
+}
+
+figure {
+  display: inline-block;
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 30px 0px;
+}
+
+/* Phones devices: 600px and down */
+@media only screen and (max-device-width: 600px) {
+  footer {
+    display: none;
   }
-  
-  /*Bootstrap
-  xs (para teléfonos - pantallas de menos de 768px de ancho)
-  sm (para tabletas: pantallas iguales o superiores a 768 px de ancho)
-  md (para computadoras portátiles pequeñas: pantallas de 992px o más de ancho)
-  lg (para computadoras portátiles y de escritorio: pantallas iguales o superiores a 1200px de ancho)
-  */
+}
+
+/* Landscape phones devices: 850px and down */
+@media (orientation: landscape) and (max-device-width: 850px) {
+  footer {
+    display: none;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-device-width: 1100px) and (hover:hover) {
+  .btn-default a {
+    font-size: 20px;
+  }
+
+  .btn-default:hover {
+    border-radius: 20px;
+    background-color: #eceaec;
+  }
+}

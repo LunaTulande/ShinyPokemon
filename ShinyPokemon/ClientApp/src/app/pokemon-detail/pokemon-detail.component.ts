@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../pokemon';
 
@@ -9,22 +9,48 @@ import { Pokemon } from '../pokemon';
   styleUrls: ['./pokemon-detail.component.css']
 })
 export class PokemonDetailComponent implements OnInit {
+  private apiUrl: string;
   pokemonID: number;
   pokemon: Pokemon;
-  private apiUrl: string;
+  previousP: Pokemon;
+  nextP: Pokemon;
+  obtainedPokemon: Pokemon;
 
-  constructor(private _route: ActivatedRoute, private http: HttpClient) { 
-    let id = +this._route.snapshot.paramMap.get('id');
-    this.pokemonID = id;
-    this.apiUrl = 'http://localhost:50455/api/pokemon/'+this.pokemonID;
+  constructor(private activedRoute: ActivatedRoute, private router: Router, private http: HttpClient) {
+    // force route reload when params change
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
+  ngOnInit() {
+    //subscribe to the parameters observable
+    this.activedRoute.paramMap.subscribe(params => {
+      console.log(params.get('id'));
+      this.pokemonID = +params.get('id');
+    });
+
+    //PONER LAS PETICIONES EN EL SERVICIO!
+
+    // let id = +this.activedRoute.snapshot.paramMap.get('id');
+    // this.pokemonID = id;
+    this.apiUrl = 'http://localhost:50455/api/pokemon/' + this.pokemonID;
     this.http.get<Pokemon>(this.apiUrl).subscribe(data => {
       console.log(data);
       this.pokemon = data;
     });
-  }
 
-  ngOnInit() {
+    //previous pokemon
+    if (this.pokemonID > 1) {
+      this.apiUrl = 'http://localhost:50455/api/pokemon/' + (this.pokemonID - 1);
+      this.http.get<Pokemon>(this.apiUrl).subscribe(data => {
+        console.log(data);
+        this.previousP = data;
+      });
+    }
+    //next pokemon
+    this.apiUrl = 'http://localhost:50455/api/pokemon/' + (this.pokemonID + 1);
+    this.http.get<Pokemon>(this.apiUrl).subscribe(data => {
+      console.log(data);
+      this.nextP = data;
+    });
   }
-
 }

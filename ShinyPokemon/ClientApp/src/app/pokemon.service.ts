@@ -15,4 +15,6 @@ export class PokemonService {
     //return the api call only
     return this.http.get<Pokemon[]>(this.apiUrl)
   }
+
+  // metodos que obtengan los shinies siguiente y anterior
 }
