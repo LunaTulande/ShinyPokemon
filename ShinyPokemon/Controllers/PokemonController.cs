@@ -22,7 +22,7 @@ namespace ShinyPokemon.Controllers
         [HttpGet("shinies")]
         public List<Pokemon> GetAllShinies()
         {
-            return pokemonRepository.getAllShinies();
+            return pokemonRepository.GetAllShinies();
         }
 
         // GET api/<controller>/#
@@ -33,9 +33,32 @@ namespace ShinyPokemon.Controllers
             return selectedPokemon;
         }
 
+        // GET api/<controller>/#/previousShiny
+        [HttpGet("{id}/previousShiny")]
+        public Pokemon GetPreviousShiny(int id)
+        {
+            var previousShiny = pokemonRepository.GetPreviousPokemonShiny(id);
+            return previousShiny;
+        }
 
+        // GET api/<controller>/#/nextShiny
+        [HttpGet("{id}/nextShiny")]
+        public Pokemon GetNextShiny(int id)
+        {
+            var nextShiny = pokemonRepository.GetNextPokemonShiny(id);
+            return nextShiny;
+        }
+
+        // GET api/<controller>/#/evolutionLine
+        [HttpGet("{id}/evolutionLine")]
+        public List<Pokemon> GetEvolutionLine(int id)
+        {
+            var evolutionLine = pokemonRepository.GetEvolutionLine(id);
+            return evolutionLine;
+        }
+
+        
         /*
-
         // POST api/<controller>
         [HttpPost]
         public void Post([FromBody]string value)
