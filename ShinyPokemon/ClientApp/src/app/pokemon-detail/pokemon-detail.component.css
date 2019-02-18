@@ -46,6 +46,14 @@ ul {
   margin: 30px 0px;
 }
 
+#evolutions {
+  display: inline-block;
+}
+#evolutions img {
+  width: 80px;
+  height: 80px;
+}
+
 /* Phones devices: 600px and down */
 @media only screen and (max-device-width: 600px) {
   footer {
@@ -69,5 +77,10 @@ ul {
   .btn-default:hover {
     border-radius: 20px;
     background-color: #eceaec;
+  }
+
+  footer {
+    border-top: 1px solid #eee;
+    margin-top: 20px;
   }
 }

@@ -15,9 +15,9 @@ export class HomeMenuComponent implements OnInit {
   selectedGen: number;
 
   constructor() { }
-  ngOnInit() { }
+  ngOnInit(): void { }
 
-  onSelected(gen: number) {
+  onSelected(gen: number): void {
     if (this.selectedGen == gen) {
       this.selectedGen = 0;
     } else {
@@ -35,4 +35,5 @@ export class HomeMenuComponent implements OnInit {
     }
     this.whatToShow.emit({ showList: this.showList, subtitle: this.subtitle });
   }
+  
 }

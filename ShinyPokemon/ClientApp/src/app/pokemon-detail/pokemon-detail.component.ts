@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../pokemon';
+import { PokemonService } from '../pokemon.service';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -9,48 +9,63 @@ import { Pokemon } from '../pokemon';
   styleUrls: ['./pokemon-detail.component.css']
 })
 export class PokemonDetailComponent implements OnInit {
-  private apiUrl: string;
-  pokemonID: number;
+  pokemonId: number;
   pokemon: Pokemon;
   previousP: Pokemon;
   nextP: Pokemon;
-  obtainedPokemon: Pokemon;
+  evolutionLine: Pokemon[];
 
-  constructor(private activedRoute: ActivatedRoute, private router: Router, private http: HttpClient) {
+  constructor(private activedRoute: ActivatedRoute, private router: Router, private pokemonService: PokemonService) {
     // force route reload when params change
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     //subscribe to the parameters observable
     this.activedRoute.paramMap.subscribe(params => {
       console.log(params.get('id'));
-      this.pokemonID = +params.get('id');
+      this.pokemonId = +params.get('id');
     });
 
-    //PONER LAS PETICIONES EN EL SERVICIO!
-
-    // let id = +this.activedRoute.snapshot.paramMap.get('id');
-    // this.pokemonID = id;
-    this.apiUrl = 'http://localhost:50455/api/pokemon/' + this.pokemonID;
-    this.http.get<Pokemon>(this.apiUrl).subscribe(data => {
-      console.log(data);
-      this.pokemon = data;
-    });
+    //current pokemon
+    this.getCurrentPokemon();
 
     //previous pokemon
-    if (this.pokemonID > 1) {
-      this.apiUrl = 'http://localhost:50455/api/pokemon/' + (this.pokemonID - 1);
-      this.http.get<Pokemon>(this.apiUrl).subscribe(data => {
-        console.log(data);
-        this.previousP = data;
-      });
+    if (this.pokemonId > 1) {
+      this.getPrevious();
     }
+
     //next pokemon
-    this.apiUrl = 'http://localhost:50455/api/pokemon/' + (this.pokemonID + 1);
-    this.http.get<Pokemon>(this.apiUrl).subscribe(data => {
+    this.getNext();
+
+    //evolutionLine
+    this.getEvolutionLine();
+  }//ngOnInit
+
+  getCurrentPokemon(): void{
+    this.pokemonService.getPokemon(this.pokemonId).subscribe(data => {
+      console.log(data);
+      this.pokemon = data;
+    })
+  }
+  getPrevious(): void {
+    this.pokemonService.getPreviousShiny(this.pokemonId).subscribe(data => {
+      console.log(data);
+      this.previousP = data;
+    })
+  }
+
+  getNext(): void {
+    this.pokemonService.getNextShiny(this.pokemonId).subscribe(data => {
       console.log(data);
       this.nextP = data;
-    });
+    })
+  }
+
+  getEvolutionLine(): void {
+    this.pokemonService.getEvolutionLine(this.pokemonId).subscribe(data => {
+      console.log(data);
+      this.evolutionLine = data;
+    })
   }
 }

@@ -28,7 +28,7 @@ export class HomePokemonComponent implements OnInit {
     })
   }
 
-  setWhatToShow(eventValue) {
+  setWhatToShow(eventValue): void {
     this.showList = eventValue.showList;
     this.subtitle = eventValue.subtitle;
   }

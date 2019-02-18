@@ -1,6 +1,6 @@
 <main>
   <nav class="row">
-    <div id="left" *ngIf="previousP?.idpokemon > 0"> 
+    <div id="left" *ngIf="previousP?.idpokemon > 0">
       <button type="button" class="btn btn-default" aria-label="Left Align">
         <a [routerLink]="['/pokemon-detail', previousP?.idpokemon]">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -10,11 +10,11 @@
     </div>
     <div id="right" *ngIf="nextP?.idpokemon > 1">
       <button type="button" class="btn btn-default" aria-label="Left Align">
-      <a [routerLink]="['/pokemon-detail', nextP?.idpokemon]">
-        #{{nextP?.number}} {{nextP?.name}}
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      </a>
-    </button>
+        <a [routerLink]="['/pokemon-detail', nextP?.idpokemon]">
+          #{{nextP?.number}} {{nextP?.name}}
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </a>
+      </button>
     </div>
   </nav>
 
@@ -23,10 +23,10 @@
   </header>
 
   <section>
-    <figure><img src="{{pokemon?.imgShiny}}" *ngIf="!showShiny">
+    <figure><img src="{{pokemon?.imgShiny}}" alt="Shiny {{pokemon?.name}}">
       <figcaption>Shiny</figcaption>
     </figure>
-    <figure><img src="{{pokemon?.img}}" *ngIf="!showShiny">
+    <figure><img src="{{pokemon?.img}}" alt="Normal {{pokemon?.name}}">
       <figcaption>Normal</figcaption>
     </figure>
     <div>
@@ -37,14 +37,18 @@
       </ul>
     </div>
     <div>
-      <h3>Evolutions Line</h3>
-      <!-- linea evolutiva imagenes link -->
+      <h3>Evolution Line</h3>
+      <div *ngFor="let pokemon of evolutionLine" id="evolutions">
+        <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
+          <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
+        </a>
+      </div>
     </div>
   </section>
 
   <footer>
-    <button type="button">
-      <a [routerLink]='["/"]'>Back</a>
+    <button type="button" class="btn btn-default">
+      <a [routerLink]='["/"]'>Home</a>
     </button>
   </footer>
 
