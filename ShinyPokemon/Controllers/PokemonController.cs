@@ -49,14 +49,13 @@ namespace ShinyPokemon.Controllers
             return nextShiny;
         }
 
-        // GET api/<controller>/#/evolutionLine
+        // Get api/<controller>/#/evolutions
         [HttpGet("{id}/evolutionLine")]
-        public List<Pokemon> GetEvolutionLine(int id)
+        public List<List<Pokemon>> GetEvolutionLine(int id)
         {
-            var evolutionLine = pokemonRepository.GetEvolutionLine(id);
-            return evolutionLine;
+            var evolutions = pokemonRepository.GetEvolutionLine(id);
+            return evolutions;
         }
-
         
         /*
         // POST api/<controller>

@@ -32,48 +32,53 @@ namespace ShinyPokemon
         {
             return pokemonContext.Pokemons.OrderBy(x => x.Number).FirstOrDefault(x => x.Number > id && x.Shiny == true);
         }
-                    
-        public List<Pokemon> GetEvolutionLine(int id)
+        
+        public List<List<Pokemon>> GetEvolutionLine(int id)
         {
-            List<Pokemon> evolutionLine = new List<Pokemon>();
-            Pokemon p = GetPokemonShiny(id);
+            Pokemon currentPokemon = GetPokemonShiny(id);
+            Pokemon parent;
+            List<List<Pokemon>> evolutions = new List<List<Pokemon>>();
 
-            if (p.EvolutionFrom != 0)
+            if(currentPokemon.EvolutionFrom != 0)
             {
-                GetAncestralEvolutionLine(evolutionLine, p.EvolutionFrom);
+                parent = GetParent(currentPokemon.EvolutionFrom);
             }
-
-            evolutionLine.Add(p);
-
-            if(p.EvolutionTo != 0)
+            else
             {
-                GetFutureEvolutionLine(evolutionLine, p.EvolutionTo);  
+                parent = currentPokemon;
             }
+            List<Pokemon> parentList = new List<Pokemon>();
+            parentList.Add(parent);
+            evolutions.Add(parentList);
 
-            return evolutionLine;
+            List<Pokemon> children = GetChildren(parent.Idpokemon); //ask after all evos from parent
+            List<Pokemon> childrenFamily = new List<Pokemon>(); //list with one of evos from parent with its evo if this exist
+            if (children.Count > 0) {                
+                foreach (Pokemon child in children)
+                {
+                    childrenFamily.Add(child);
+                    List<Pokemon> grandchildren = GetChildren(child.Idpokemon);
+                    if (grandchildren.Count > 0)
+                    {//hardcode: asumme child has max one child
+                        childrenFamily.Add(grandchildren[0]);
+                    }
+                    evolutions.Add(childrenFamily);
+                }
+            }
+            return evolutions;
         }
-
-        private void GetAncestralEvolutionLine(List<Pokemon> evolutionLine, int id)
+        private Pokemon GetParent(int id)
         {
-            Pokemon p = GetPokemonShiny(id);
-
-            if (p.EvolutionFrom != 0)
+            Pokemon parent = GetPokemonShiny(id);
+            if (parent.EvolutionFrom != 0)
             {
-                GetAncestralEvolutionLine(evolutionLine, p.EvolutionFrom);
+                parent = GetParent(parent.EvolutionFrom);
             }
-
-            evolutionLine.Add(p);
+            return parent;
         }
-
-        private void GetFutureEvolutionLine(List<Pokemon> evolutionLine, int id)
+        private List<Pokemon> GetChildren(int id)
         {
-            Pokemon p = GetPokemonShiny(id);
-            evolutionLine.Add(p);
-
-            if (p.EvolutionTo != 0)
-            {
-                GetFutureEvolutionLine(evolutionLine, p.EvolutionTo);
-            }
+            return pokemonContext.Pokemons.Where(x => x.EvolutionFrom == id && x.Shiny == true).ToList();
         }
     }
 }

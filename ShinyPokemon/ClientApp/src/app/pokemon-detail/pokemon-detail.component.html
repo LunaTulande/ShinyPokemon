@@ -36,14 +36,31 @@
         <li>Event: {{pokemon?.shinyReleaseEvent}}</li>
       </ul>
     </div>
-    <div>
+
+    <div class="row" id="evolutions">
       <h3>Evolution Line</h3>
-      <div *ngFor="let pokemon of evolutionLine" id="evolutions">
-        <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
-          <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
-        </a>
-      </div>
-    </div>
+      <div *ngIf="evolutionLine?.length > 0"> <!-- if the list exist -->        
+        <div *ngFor="let pokemon of evolutionLine[0]" class="col-sm-4">
+          <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
+            <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
+          </a>
+        </div>
+        <div *ngIf="evolutionLine?.length == 2" class="col-sm-8"> <!-- if there is one child [parent, child]-->
+          <div *ngFor="let pokemon of evolutionLine[1]" class="col-sm-6">
+            <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
+              <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
+            </a>
+          </div>
+        </div>
+        <div *ngIf="evolutionLine?.length > 2" class="col-sm-8"> <!-- if there is more children -->
+          <div *ngFor="let pokemon of evolutionLine[1]" class="col-sm-12">
+            <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
+              <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
+            </a>
+          </div>
+        </div>
+      </div> <!-- evolutionsLine -->
+     </div> <!-- id evolutions -->
   </section>
 
   <footer>

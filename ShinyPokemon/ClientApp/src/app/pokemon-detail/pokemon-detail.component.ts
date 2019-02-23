@@ -13,7 +13,7 @@ export class PokemonDetailComponent implements OnInit {
   pokemon: Pokemon;
   previousP: Pokemon;
   nextP: Pokemon;
-  evolutionLine: Pokemon[];
+  evolutionLine: Pokemon[][];
 
   constructor(private activedRoute: ActivatedRoute, private router: Router, private pokemonService: PokemonService) {
     // force route reload when params change
@@ -66,6 +66,7 @@ export class PokemonDetailComponent implements OnInit {
     this.pokemonService.getEvolutionLine(this.pokemonId).subscribe(data => {
       console.log(data);
       this.evolutionLine = data;
+      console.log(this.evolutionLine);
     })
   }
 }

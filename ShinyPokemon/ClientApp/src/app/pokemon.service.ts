@@ -30,8 +30,8 @@ export class PokemonService {
     return this.http.get<Pokemon>(this.apiUrl + '/' + id + '/nextShiny')
   }
 
-  getEvolutionLine(id: number): Observable<Pokemon[]> {
+  getEvolutionLine(id: number): Observable<Pokemon[][]> {
     //return the api call only
-    return this.http.get<Pokemon[]>(this.apiUrl + '/' + id + '/evolutionLine')
+    return this.http.get<Pokemon[][]>(this.apiUrl + '/' + id + '/evolutionLine')
   }
 }
