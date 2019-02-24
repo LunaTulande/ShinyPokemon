@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
 import { Pokemon } from './pokemon';
 
 @Injectable()
 export class PokemonService {
   //conection to the "data base" througt the PokemonRepository & PokemonController from server  
-  private apiUrl = 'http://localhost:50455/api/pokemon';
+  private apiUrl = environment.API_URL;
 
   constructor(private http: HttpClient) { }
 
