@@ -13,6 +13,7 @@ export class HomePokemonComponent implements OnInit {
   showList: Pokemon[]; //List to show
   subtitle: string = 'All';
   search: string = '';
+  loading: boolean;
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -21,8 +22,10 @@ export class HomePokemonComponent implements OnInit {
   }
 
   getPokemons(): void {
+    this.loading = true;
     this.pokemonService.getPokemons().subscribe(data => {
       console.log(data);
+      this.loading = false;
       this.shinyPokemonList = data;
       this.showList = this.shinyPokemonList;
     })

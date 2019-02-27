@@ -51,11 +51,11 @@ namespace ShinyPokemon
             parentList.Add(parent);
             evolutions.Add(parentList);
 
-            List<Pokemon> children = GetChildren(parent.Idpokemon); //ask after all evos from parent
-            List<Pokemon> childrenFamily = new List<Pokemon>(); //list with one of evos from parent with its evo if this exist
+            List<Pokemon> children = GetChildren(parent.Idpokemon); //ask after all evos from parent            
             if (children.Count > 0) {                
                 foreach (Pokemon child in children)
                 {
+                    List<Pokemon> childrenFamily = new List<Pokemon>(); //list with one of evos from parent with its evo if this exist
                     childrenFamily.Add(child);
                     List<Pokemon> grandchildren = GetChildren(child.Idpokemon);
                     if (grandchildren.Count > 0)

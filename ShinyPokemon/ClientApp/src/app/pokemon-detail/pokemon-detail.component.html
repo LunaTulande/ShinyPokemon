@@ -22,18 +22,17 @@
     <h1>#{{pokemon?.number}} {{pokemon?.name}}</h1>
   </header>
 
-  <section>
-    <div *ngIf="loading">
-      <img src="Images/loadingPokeball.gif">
-    </div>
-    <div *ngIf="!loading">
-      <figure><img src="{{pokemon?.imgShiny}}" alt="Shiny {{pokemon?.name}}">
-        <figcaption>Shiny</figcaption>
-      </figure>
-      <figure><img src="{{pokemon?.img}}" alt="Normal {{pokemon?.name}}">
-        <figcaption>Normal</figcaption>
-      </figure>
-    </div>
+  <section *ngIf="loading">
+    <img src="Images/loadingPokeball.gif">
+  </section>
+  <section *ngIf="!loading">
+    <figure><img src="{{pokemon?.imgShiny}}" alt="Shiny {{pokemon?.name}}">
+      <figcaption>Shiny</figcaption>
+    </figure>
+    <figure><img src="{{pokemon?.img}}" alt="Normal {{pokemon?.name}}">
+      <figcaption>Normal</figcaption>
+    </figure>
+
     <div>
       <ul>
         <li>Generation: {{pokemon?.generation}}</li>
@@ -41,69 +40,45 @@
         <li>Event: {{pokemon?.shinyReleaseEvent}}</li>
       </ul>
     </div>
+  </section>
 
+  <section *ngIf="loading">
+    <img src="Images/loadingPokeball.gif">
+  </section>
+  <section *ngIf="!loading">
     <div id="evolutions" class="row justify-content-center">
       <h3>Evolution Line</h3>
-      <div *ngIf="loading">
-        <img src="Images/loadingPokeball.gif">
-      </div>
-      <div *ngIf="!loading" id="evolution">
-        <div *ngIf="evolutionLine?.length > 0">
-          <!-- if the list exist -->
-          <div [ngSwitch]="evolutionLine.length">
-            <div *ngSwitchCase="1"> <!-- case 1: only one pokemon -->
-                <a [routerLink]="['/pokemon-detail', evolutionLine[0][0].idpokemon]">
-                  <img src="{{evolutionLine[0][0].imgShiny}}" alt="Shiny {{evolutionLine[0][0].name}}">
-                </a>
-            </div> <!-- case 1-->
-            <div *ngSwitchCase="2"> <!-- case 2: only one child [parent, child] -->  
-              <span *ngIf="evolutionLine[1].length == 1">
-                <span class="col-xs-6">
-                  <a [routerLink]="['/pokemon-detail', evolutionLine[0][0].idpokemon]">
-                    <img src="{{evolutionLine[0][0].imgShiny}}" alt="Shiny {{evolutionLine[0][0].name}}">
-                  </a>
-                </span>
-                <span class="col-xs-6">
-                  <a [routerLink]="['/pokemon-detail', evolutionLine[1][0].idpokemon]">
-                    <img src="{{evolutionLine[1][0].imgShiny}}" alt="Shiny {{evolutionLine[1][0].name}}">
-                  </a>
-                </span>
-              </span>
-              <span *ngIf="evolutionLine[1].length == 2">
-                <span class="col-xs-4">
-                  <a [routerLink]="['/pokemon-detail', evolutionLine[0][0].idpokemon]">
-                    <img src="{{evolutionLine[0][0].imgShiny}}" alt="Shiny {{evolutionLine[0][0].name}}">
-                  </a>
-                </span>
-                <span class="col-xs-8">
-                  <span *ngFor="let pokemon of evolutionLine[1]" class="col-xs-6">
-                    <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
-                      <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
-                    </a>
-                  </span>
-                </span>
-              </span>         
-            </div> <!-- case 2 -->
-            <div *ngSwitchDefault> <!-- case eevee -->
-              <span class="col-xs-6">
-                <a [routerLink]="['/pokemon-detail', evolutionLine[0][0].idpokemon]">
-                  <img src="{{evolutionLine[0][0].imgShiny}}" alt="Shiny {{evolutionLine[0][0].name}}">
-                </a>
-              </span>
-              <span class="col-xs-6">
-                  <nav *ngFor="let pokemon of evolutionLine[1]">
-                      <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
-                        <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
-                      </a>
-                    </nav>
-              </span>
-            </div>
-          </div> <!-- switch -->
-          
-        </div> <!-- evolutionsLine -->
-      </div> <!-- loading  -->
-    </div> <!-- id evolutions -->
-  </section>
+
+      <div *ngIf="evolutionLine?.length > 1">
+        <div *ngFor="let pokemons of evolutionLine | slice:1" class="row">
+          <div *ngIf="pokemons.length > 1">
+            <a [routerLink]="['/pokemon-detail', evolutionLine[0][0].idpokemon]">
+              <img src="{{evolutionLine[0][0].imgShiny}}" alt="Shiny {{evolutionLine[0][0].name}}">
+            </a>
+            <a [routerLink]="['/pokemon-detail', pokemons[0].idpokemon]">
+              <img src="{{pokemons[0].imgShiny}}" alt="Shiny {{pokemons[0].name}}">
+            </a>
+            <a [routerLink]="['/pokemon-detail', pokemons[1].idpokemon]">
+              <img src="{{pokemons[1].imgShiny}}" alt="Shiny {{pokemons[1].name}}">
+            </a>
+          </div>
+          <div *ngIf="pokemons.length == 1">
+            <a [routerLink]="['/pokemon-detail', evolutionLine[0][0].idpokemon]">
+              <img src="{{evolutionLine[0][0].imgShiny}}" alt="Shiny {{evolutionLine[0][0].name}}">
+            </a>
+            <a [routerLink]="['/pokemon-detail', pokemons[0].idpokemon]">
+              <img src="{{pokemons[0].imgShiny}}" alt="Shiny {{pokemons[0].name}}">
+            </a>
+          </div>
+        </div>
+        <div *ngIf="evolutionLine?.length == 1">
+          <a [routerLink]="['/pokemon-detail', evolutionLine[0][0].idpokemon]">
+            <img src="{{evolutionLine[0][0].imgShiny}}" alt="Shiny {{evolutionLine[0][0].name}}">
+          </a>
+        </div>
+      </div> <!-- evolutionLine > 1  -->
+    </div> <!-- evolutions  -->
+  </section> <!-- !loading  -->
 
   <footer>
     <button type="button" class="btn btn-default">
@@ -112,28 +87,3 @@
   </footer>
 
 </main>
-
-<!-- 
-  <div *ngFor="let pokemon of evolutionLine[0]" class="col-xs-4">
-              <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
-                <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
-              </a>
-            </div>
-            <div *ngIf="evolutionLine?.length == 2" class="col-xs-8">
-              <!- if there is one child [parent, child]->
-              <div *ngFor="let pokemon of evolutionLine[1]">               <!- class="col-xs-6" ->
-                <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
-                  <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
-                </a>
-              </div>
-            </div>
-  
-            <div *ngIf="evolutionLine?.length > 2" class="col-xs-8">
-                <!- if there is more children ->
-                <div *ngFor="let pokemon of evolutionLine[1]" class="col-xs-12">
-                  <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
-                    <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
-                  </a>
-                </div>
-              </div>
- -->

@@ -43,7 +43,7 @@ export class PokemonDetailComponent implements OnInit {
     this.getEvolutionLine();
   }//ngOnInit
 
-  getCurrentPokemon(): void{
+  getCurrentPokemon(): void {
     this.loading = true;
     this.pokemonService.getPokemon(this.pokemonId).subscribe(data => {
       console.log(data);
