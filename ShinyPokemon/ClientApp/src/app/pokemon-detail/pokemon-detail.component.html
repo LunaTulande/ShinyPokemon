@@ -55,9 +55,11 @@
             <a [routerLink]="['/pokemon-detail', evolutionLine[0][0].idpokemon]">
               <img src="{{evolutionLine[0][0].imgShiny}}" alt="Shiny {{evolutionLine[0][0].name}}">
             </a>
+            <i class="fas fa-arrow-right"></i>
             <a [routerLink]="['/pokemon-detail', pokemons[0].idpokemon]">
               <img src="{{pokemons[0].imgShiny}}" alt="Shiny {{pokemons[0].name}}">
             </a>
+            <i class="fas fa-arrow-right"></i>
             <a [routerLink]="['/pokemon-detail', pokemons[1].idpokemon]">
               <img src="{{pokemons[1].imgShiny}}" alt="Shiny {{pokemons[1].name}}">
             </a>
@@ -66,17 +68,18 @@
             <a [routerLink]="['/pokemon-detail', evolutionLine[0][0].idpokemon]">
               <img src="{{evolutionLine[0][0].imgShiny}}" alt="Shiny {{evolutionLine[0][0].name}}">
             </a>
+            <i class="fas fa-arrow-right"></i>
             <a [routerLink]="['/pokemon-detail', pokemons[0].idpokemon]">
               <img src="{{pokemons[0].imgShiny}}" alt="Shiny {{pokemons[0].name}}">
             </a>
           </div>
-        </div>
-        <div *ngIf="evolutionLine?.length == 1">
-          <a [routerLink]="['/pokemon-detail', evolutionLine[0][0].idpokemon]">
-            <img src="{{evolutionLine[0][0].imgShiny}}" alt="Shiny {{evolutionLine[0][0].name}}">
-          </a>
-        </div>
+        </div> <!-- ngFor -->
       </div> <!-- evolutionLine > 1  -->
+      <div *ngIf="evolutionLine?.length == 1">
+        <a [routerLink]="['/pokemon-detail', evolutionLine[0][0].idpokemon]">
+          <img src="{{evolutionLine[0][0].imgShiny}}" alt="Shiny {{evolutionLine[0][0].name}}">
+        </a>
+      </div>
     </div> <!-- evolutions  -->
   </section> <!-- !loading  -->
 
