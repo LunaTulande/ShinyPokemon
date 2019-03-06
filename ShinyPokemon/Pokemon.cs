@@ -15,5 +15,6 @@ namespace ShinyPokemon
         public DateTime ShinyReleaseDate { get; set; }
         public string ShinyReleaseEvent { get; set; }
         public int EvolutionFrom { get; set; }
+        public string Obtainable { get; set; }
     }
 }

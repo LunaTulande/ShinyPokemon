@@ -9,4 +9,5 @@ export interface Pokemon {
         shinyReleaseDate: Date;
         shinyReleaseEvent: string;
         evolutionFrom: number;
+        obtainable: string;
 }
