@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ShinyPokemon.Data_Access;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace ShinyPokemon
@@ -22,6 +22,13 @@ namespace ShinyPokemon
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add framework services.
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                b => b.MigrationsAssembly("ShinyPokemon")));
+
+            //var x = Configuration["FacebookApp:AppID"];
+
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<PokemonContext>(options => options.UseSqlServer(connection));
             services.AddScoped<PokemonContext, PokemonContext>();
