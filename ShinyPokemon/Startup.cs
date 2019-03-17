@@ -1,3 +1,6 @@
+using System;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -6,19 +9,15 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ShinyPokemon.Data_Access;
-using ShinyPokemon.Models.Entities;
-using Swashbuckle.AspNetCore.Swagger;
-using AutoMapper;
-using ShinyPokemon.Models;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using ShinyPokemon.Helpers;
-using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.AspNetCore.Http;
+using Swashbuckle.AspNetCore.Swagger;
+using FluentValidation.AspNetCore;
+using AutoMapper;
+using ShinyPokemon.Models;
+using ShinyPokemon.Data_Access;
+using ShinyPokemon.Models.Entities;
 
 namespace ShinyPokemon
 {
@@ -34,11 +33,12 @@ namespace ShinyPokemon
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddDbContext<AppDbContext>(options =>
+            // Add framework services, all with users to do
+            services.AddDbContext<AppUserContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                 b => b.MigrationsAssembly("ShinyPokemon")));
 
+            // Jwt creation
             services.AddSingleton<JwtFactory, JwtFactory>();
 
             services.TryAddTransient<IHttpContextAccessor, HttpContextAccessor>();
@@ -46,12 +46,10 @@ namespace ShinyPokemon
             // Get options from app settings
             var jwtAppSettingOptions = Configuration.GetSection(nameof(JwtIssuerOptions));
 
-            //
+            // Configure JwtIssuerOptions
             string SecretKey = Configuration["SecretKey"];
             SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
-            //
-
-            // Configure JwtIssuerOptions
+            
             services.Configure<JwtIssuerOptions>(options =>
             {
                 options.Issuer = jwtAppSettingOptions[nameof(JwtIssuerOptions.Issuer)];
@@ -90,7 +88,7 @@ namespace ShinyPokemon
             // api user claim policy
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("ApiUser", policy => policy.RequireClaim(Constants.Strings.JwtClaimIdentifiers.Rol, Constants.Strings.JwtClaims.ApiAccess));
+                options.AddPolicy("ApiUser", policy => policy.RequireClaim("rol", "api_access"));
             });
 
             // add identity
@@ -104,15 +102,12 @@ namespace ShinyPokemon
                 o.Password.RequiredLength = 6;
             });
             builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
-            builder.AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+            builder.AddEntityFrameworkStores<AppUserContext>().AddDefaultTokenProviders();
             services.AddAutoMapper();
             services.AddMvc().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
-                    
-      
-            //var x = Configuration["FacebookApp:AppID"];
-
-            var connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<PokemonContext>(options => options.UseSqlServer(connection));
+                         
+            //Conection to Db with pokemon focus. All with pokemons to do
+            services.AddDbContext<PokemonContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<PokemonContext, PokemonContext>();
             services.AddScoped<PokemonRepository, PokemonRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -156,9 +151,6 @@ namespace ShinyPokemon
 
             app.UseSpa(spa =>
             {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
                 spa.Options.SourcePath = "ClientApp";
 
                 if (env.IsDevelopment())

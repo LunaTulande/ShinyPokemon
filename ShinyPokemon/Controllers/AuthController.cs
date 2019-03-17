@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using ShinyPokemon.Helpers;
 using ShinyPokemon.Models;
 using ShinyPokemon.Models.Entities;
 using ShinyPokemon.Models.ViewModels;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace ShinyPokemon.Controllers
 {
@@ -40,7 +40,8 @@ namespace ShinyPokemon.Controllers
                 return BadRequest(Errors.AddErrorToModelState("login_failure", "Invalid username or password.", ModelState));
             }
 
-            var jwt = await Tokens.GenerateJwt(identity, _jwtFactory, credentials.UserName, _jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented });
+            var jwt = await Token.GenerateJwt(identity, _jwtFactory, credentials.UserName, _jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented });
+
             return new OkObjectResult(jwt);
         }
 

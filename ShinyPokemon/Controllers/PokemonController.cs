@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ShinyPokemon.Controllers
 {
@@ -18,14 +13,14 @@ namespace ShinyPokemon.Controllers
             this.pokemonRepository = pokemonRepository;
         }
 
-        // GET api/<controller>/shinies
+        // GET api/shinies
         [HttpGet("shinies")]
         public List<Pokemon> GetAllShinies()
         {
             return pokemonRepository.GetAllShinies();
         }
 
-        // GET api/<controller>/#
+        // GET api/#
         [HttpGet("{id}")]
         public Pokemon Get(int id)
         {
@@ -33,7 +28,7 @@ namespace ShinyPokemon.Controllers
             return selectedPokemon;
         }
 
-        // GET api/<controller>/#/previousShiny
+        // GET api/#/previousShiny
         [HttpGet("{id}/previousShiny")]
         public Pokemon GetPreviousShiny(int id)
         {
@@ -41,7 +36,7 @@ namespace ShinyPokemon.Controllers
             return previousShiny;
         }
 
-        // GET api/<controller>/#/nextShiny
+        // GET api/#/nextShiny
         [HttpGet("{id}/nextShiny")]
         public Pokemon GetNextShiny(int id)
         {
@@ -49,34 +44,12 @@ namespace ShinyPokemon.Controllers
             return nextShiny;
         }
 
-        // Get api/<controller>/#/evolutions
+        // Get api/#/evolutions
         [HttpGet("{id}/evolutionLine")]
         public List<List<Pokemon>> GetEvolutionLine(int id)
         {
             var evolutions = pokemonRepository.GetEvolutionLine(id);
             return evolutions;
         }
-        
-        /*
-        // POST api/<controller>
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-            db.Add(value);
-        }
-
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-
-    */
     }
 }

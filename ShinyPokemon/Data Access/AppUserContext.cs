@@ -4,13 +4,10 @@ using ShinyPokemon.Models.Entities;
 
 namespace ShinyPokemon.Data_Access
 {
-    public class AppDbContext : IdentityDbContext<AppUser>
+    public class AppUserContext : IdentityDbContext<AppUser>
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options)
-            : base(options)
-        {
-        }
-
+        public AppUserContext(DbContextOptions<AppUserContext> options) : base(options) { }
+        
         public DbSet<Customer> Customers { get; set; }
     }
 }

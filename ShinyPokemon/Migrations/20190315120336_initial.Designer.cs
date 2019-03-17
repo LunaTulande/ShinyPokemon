@@ -9,7 +9,7 @@ using ShinyPokemon.Data_Access;
 
 namespace ShinyPokemon.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(AppUserContext))]
     [Migration("20190315120336_initial")]
     partial class initial
     {

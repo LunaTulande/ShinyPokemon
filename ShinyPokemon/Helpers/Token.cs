@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShinyPokemon.Helpers
 {
-    public class Tokens
+    public class Token
     {
         public static async Task<string> GenerateJwt(ClaimsIdentity identity, JwtFactory jwtFactory, string userName, JwtIssuerOptions jwtOptions, JsonSerializerSettings serializerSettings)
         {

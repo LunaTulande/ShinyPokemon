@@ -1,19 +1,12 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ShinyPokemon
 {
     public partial class PokemonContext : DbContext
     {
-        public PokemonContext()
-        {
-        }
+        public PokemonContext() { }
 
-        public PokemonContext(DbContextOptions<PokemonContext> options)
-            : base(options)
-        {
-        }
+        public PokemonContext(DbContextOptions<PokemonContext> options) : base(options) { }
 
         public virtual DbSet<Pokemon> Pokemons { get; set; }
 
@@ -21,8 +14,7 @@ namespace ShinyPokemon
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                //optionsBuilder.UseSqlServer("Data Source=LAPTOP-N93387EQ;Initial Catalog=ShinyPokemon;Integrated Security=True");
+                //Database conection string
             }
         }
 

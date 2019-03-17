@@ -8,7 +8,7 @@ using ShinyPokemon.Data_Access;
 
 namespace ShinyPokemon.Migrations
 {
-    [DbContext(typeof(AppDbContext))]
+    [DbContext(typeof(AppUserContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
