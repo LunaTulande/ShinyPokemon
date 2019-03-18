@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Pokemon } from '../pokemon';
+import { Pokemon } from '../interfaces/pokemon';
 
 @Component({
   selector: 'app-home-menu',

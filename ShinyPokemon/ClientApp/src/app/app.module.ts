@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { HttpModule, XHRBackend } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -12,8 +12,19 @@ import { HomePokemonComponent } from './home-pokemon/home-pokemon.component';
 import { HomeMenuComponent } from './home-menu/home-menu.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { ScrollTopComponent } from './scroll-top/scroll-top.component';
-import { SearchPipe } from './search.pipe';
-import { PokemonService } from './pokemon.service';
+import { SearchPipe } from './utils/search.pipe';
+import { PokemonService } from './services/pokemon.service';
+import { RegistrationFormComponent } from './account/registration-form/registration-form.component';
+import { LoginFormComponent } from './account/login-form/login-form.component';
+import { UserService } from './services/user.service';
+import { AuthHomeComponent } from './dashboard/auth-home/auth-home.component';
+import { AuthGuard } from './utils/auth.guard';
+import { ConfigService } from './services/config.service';
+import { EmailValidator } from './utils/email-validator.directive';
+import { FacebookLoginComponent } from './account/facebook-login/facebook-login.component';
+import { DashboardService } from './services/dashboard.service';
+import { AuthenticateXHRBackend } from './utils/authenticate-xhr.backend';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -25,18 +36,24 @@ import { PokemonService } from './pokemon.service';
     HomeMenuComponent,
     PokemonDetailComponent,
     ScrollTopComponent,
-    SearchPipe
+    SearchPipe,
+    RegistrationFormComponent,
+    LoginFormComponent,
+    FacebookLoginComponent,
+    AuthHomeComponent,
+    EmailValidator,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    HttpModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomePokemonComponent, pathMatch: 'full' },
-      { path: 'pokemon-detail/:id', component: PokemonDetailComponent },
-    ])
+    AppRoutingModule
   ],
-  providers: [PokemonService],
+  providers: [PokemonService, UserService, DashboardService, AuthGuard, ConfigService, {
+    provide: XHRBackend,
+    useClass: AuthenticateXHRBackend
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

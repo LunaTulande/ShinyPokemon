@@ -24,9 +24,9 @@ namespace ShinyPokemon.Controllers
             _appDbContext = appDbContext;
         }
 
-        // GET api/dashboard/home
+        // GET api/dashboard/authHome
         [HttpGet]
-        public async Task<IActionResult> Home()
+        public async Task<IActionResult> AuthHome()
         {
             // retrieve the user info
             // HttpContext.User
