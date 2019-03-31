@@ -23,7 +23,8 @@ export class FacebookLoginComponent {
   }
 
   launchFbLogin() {
-    //this.authWindow = window.open('https://www.facebook.com/v2.11/dialog/oauth?&response_type=token&display=popup&client_id=1528751870549294&display=popup&redirect_uri=http://localhost:5000/facebook-auth.html&scope=email',null,'width=600,height=400');    
+    // Launch facebook login dialog
+    this.authWindow = window.open('https://www.facebook.com/v3.2/dialog/oauth?&response_type=token&display=popup&client_id=402398470574692&display=popup&redirect_uri=http://localhost:50455/facebook-auth.html&scope=email', null, 'width=600,height=400');    
   }
 
   handleMessage(event: Event) {
@@ -48,7 +49,7 @@ export class FacebookLoginComponent {
         .subscribe(
           result => {
             if (result) {
-              this.router.navigate(['/dashboard/auth-home']);
+              this.router.navigate(['/dashboard/authHome']);
             }
           },
           error => {

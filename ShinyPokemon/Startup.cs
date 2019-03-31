@@ -18,6 +18,7 @@ using AutoMapper;
 using ShinyPokemon.Models;
 using ShinyPokemon.Data_Access;
 using ShinyPokemon.Models.Entities;
+using ShinyPokemon.Models.ViewModels;
 
 namespace ShinyPokemon
 {
@@ -40,6 +41,9 @@ namespace ShinyPokemon
 
             // Jwt creation
             services.AddSingleton<JwtFactory, JwtFactory>();
+
+            // Register the ConfigurationBuilder instance of FacebookAuthSettings
+            services.Configure<FacebookAuthSettings>(Configuration.GetSection(nameof(FacebookAuthSettings)));
 
             services.TryAddTransient<IHttpContextAccessor, HttpContextAccessor>();
 

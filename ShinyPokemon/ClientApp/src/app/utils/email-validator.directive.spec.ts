@@ -1,8 +1,8 @@
-import { EmailValidatorDirective } from './email-validator.directive';
+import { EmailValidator } from './email-validator.directive';
 
 describe('EmailValidatorDirective', () => {
   it('should create an instance', () => {
-    const directive = new EmailValidatorDirective();
+    const directive = new EmailValidator();
     expect(directive).toBeTruthy();
   });
 });
