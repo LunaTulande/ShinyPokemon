@@ -37,12 +37,8 @@ namespace ShinyPokemon.Controllers
             {
                 Message = "This is secure API and user data!",
                 customer.Identity.FirstName,
-                customer.Identity.LastName,
                 customer.Identity.PictureUrl,
-                customer.Identity.FacebookId,
-                customer.Location,
-                customer.Locale,
-                customer.Gender
+                customer.Identity.FacebookId
             });
         }
     }

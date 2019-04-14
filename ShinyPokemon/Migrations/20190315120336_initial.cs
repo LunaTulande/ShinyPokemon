@@ -42,7 +42,6 @@ namespace ShinyPokemon.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
                     FacebookId = table.Column<long>(nullable: true),
                     PictureUrl = table.Column<string>(nullable: true)
                 },
@@ -163,10 +162,7 @@ namespace ShinyPokemon.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    IdentityId = table.Column<string>(nullable: true),
-                    Location = table.Column<string>(nullable: true),
-                    Locale = table.Column<string>(nullable: true),
-                    Gender = table.Column<string>(nullable: true)
+                    IdentityId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

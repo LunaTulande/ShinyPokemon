@@ -148,8 +148,6 @@ namespace ShinyPokemon.Migrations
 
                     b.Property<string>("FirstName");
 
-                    b.Property<string>("LastName");
-
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -194,13 +192,7 @@ namespace ShinyPokemon.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Gender");
-
                     b.Property<string>("IdentityId");
-
-                    b.Property<string>("Locale");
-
-                    b.Property<string>("Location");
 
                     b.HasKey("Id");
 

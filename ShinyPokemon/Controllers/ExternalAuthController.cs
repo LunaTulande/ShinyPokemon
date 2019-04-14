@@ -49,7 +49,7 @@ namespace ShinyPokemon.Controllers
             }
 
             // 3. we've got a valid token so we can request user data from fb
-            var userInfoResponse = await Client.GetStringAsync($"https://graph.facebook.com/v3.2/me?fields=id,email,first_name,last_name,name,gender,locale,birthday,picture&access_token={model.AccessToken}");
+            var userInfoResponse = await Client.GetStringAsync($"https://graph.facebook.com/v3.2/me?fields=id,email,first_name,name,birthday,picture&access_token={model.AccessToken}");
             var userInfo = JsonConvert.DeserializeObject<FacebookUserData>(userInfoResponse);
 
             // 4. ready to create the local user account (if necessary) and jwt
@@ -60,7 +60,6 @@ namespace ShinyPokemon.Controllers
                 var appUser = new AppUser
                 {
                     FirstName = userInfo.FirstName,
-                    LastName = userInfo.LastName,
                     FacebookId = userInfo.Id,
                     Email = userInfo.Email,
                     UserName = userInfo.Email,
@@ -71,7 +70,7 @@ namespace ShinyPokemon.Controllers
 
                 if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
 
-                await _appDbContext.Customers.AddAsync(new Customer { IdentityId = appUser.Id, Location = "", Locale = userInfo.Locale, Gender = userInfo.Gender });
+                await _appDbContext.Customers.AddAsync(new Customer { IdentityId = appUser.Id });
                 await _appDbContext.SaveChangesAsync();
             }
 
