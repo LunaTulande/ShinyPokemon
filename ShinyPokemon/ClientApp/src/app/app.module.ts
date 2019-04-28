@@ -16,13 +16,13 @@ import { SearchPipe } from './utils/search.pipe';
 import { PokemonService } from './services/pokemon.service';
 import { RegistrationFormComponent } from './account/registration-form/registration-form.component';
 import { LoginFormComponent } from './account/login-form/login-form.component';
-import { UserService } from './services/user.service';
-import { AuthHomeComponent } from './dashboard/auth-home/auth-home.component';
+import { LoginService } from './services/login.service';
+import { AuthHomeComponent } from './profile/auth-home/auth-home.component';
 import { AuthGuard } from './utils/auth.guard';
 import { ConfigService } from './services/config.service';
 import { EmailValidator } from './utils/email-validator.directive';
 import { FacebookLoginComponent } from './account/facebook-login/facebook-login.component';
-import { DashboardService } from './services/dashboard.service';
+import { ProfileService } from './services/profile.service';
 import { AuthenticateXHRBackend } from './utils/authenticate-xhr.backend';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -50,7 +50,7 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [PokemonService, UserService, DashboardService, AuthGuard, ConfigService, {
+  providers: [PokemonService, LoginService, ProfileService, AuthGuard, ConfigService, {
     provide: XHRBackend,
     useClass: AuthenticateXHRBackend
   }],

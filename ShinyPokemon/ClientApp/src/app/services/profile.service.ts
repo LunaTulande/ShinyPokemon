@@ -9,7 +9,7 @@ import { AuthHome } from '../interfaces/auth-home';
 import '../rxjs-operators';
 
 @Injectable()
-export class DashboardService extends BaseService {
+export class ProfileService extends BaseService {
   baseUrl: string = '';
 
   constructor(private http: Http, private configService: ConfigService) {
@@ -23,7 +23,7 @@ export class DashboardService extends BaseService {
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
 
-    return this.http.get(this.baseUrl + "/dashboard/authHome", { headers })
+    return this.http.get(this.baseUrl + "/profile/authHome", { headers })
       .map(response => response.json())
       .catch(this.handleError);
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthHome } from '../../interfaces/auth-home';
-import { DashboardService } from '../../services/dashboard.service';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-auth-home',
@@ -10,10 +10,10 @@ import { DashboardService } from '../../services/dashboard.service';
 export class AuthHomeComponent implements OnInit {
   homeDetails: AuthHome;
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
-    this.dashboardService.getHomeDetails()
+    this.profileService.getHomeDetails()
       .subscribe((homeDetails: AuthHome) => {
         this.homeDetails = homeDetails;
       });

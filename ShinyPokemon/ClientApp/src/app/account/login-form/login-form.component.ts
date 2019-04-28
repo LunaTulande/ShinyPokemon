@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { UserService } from '../../services/user.service';
+import { LoginService } from '../../services/login.service';
 import { Credentials } from '../../interfaces/credentials';
 import 'rxjs/add/operator/finally';
 
@@ -18,7 +18,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   submitted: boolean = false;
   credentials: Credentials = { email: '', password: '' };
 
-  constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private loginService: LoginService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     // subscribe to router event
@@ -39,14 +39,14 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     this.isRequesting = true;
     this.errors = '';
     if (valid) {
-      this.userService.login(value.email, value.password)
+      this.loginService.login(value.email, value.password)
         .finally(() => {
           return this.isRequesting = false;
         })
         .subscribe(
           result => {
             if (result) {
-              this.router.navigate(['/dashboard/authHome']);
+              this.router.navigate(['/profile/authHome']);
             }
           },
           error => this.errors = error);

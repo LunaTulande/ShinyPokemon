@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { UserService } from '../services/user.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -9,18 +9,18 @@ import { UserService } from '../services/user.service';
 })
 export class NavMenuComponent implements OnInit, OnDestroy {
   isExpanded = false;
-  status: boolean;
+  isLogged: boolean;
   subscription: Subscription;
 
-  constructor(private userService: UserService) { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
-    this.subscription = this.userService.authNavStatus$.subscribe(
-      status => this.status = status);
+    this.subscription = this.loginService.authNavStatus$.subscribe(
+      status => this.isLogged = status);
   }
 
   logout() {
-    this.userService.logout();
+    this.loginService.logout();
   }
 
   ngOnDestroy() {

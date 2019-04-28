@@ -5,7 +5,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { FacebookLoginComponent } from './facebook-login/facebook-login.component';
 import { FormsModule } from '@angular/forms';
 import { EmailValidator } from '../utils/email-validator.directive';
-import { UserService } from '../services/user.service';
+import { LoginService } from '../services/login.service';
 
 @NgModule({
   imports: [
@@ -14,6 +14,6 @@ import { UserService } from '../services/user.service';
   declarations: [
     RegistrationFormComponent, EmailValidator, LoginFormComponent, FacebookLoginComponent
   ],
-  providers: [UserService]
+  providers: [LoginService]
 })
 export class AccountModule { }

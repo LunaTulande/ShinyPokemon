@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../../services/user.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-facebook-login',
@@ -14,7 +14,7 @@ export class FacebookLoginComponent {
   errorDescription: string;
   isRequesting: boolean;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private loginService: LoginService, private router: Router) {
     if (window.addEventListener) {
       window.addEventListener("message", this.handleMessage.bind(this), false);
     } else {
@@ -44,12 +44,12 @@ export class FacebookLoginComponent {
       this.failed = false;
       this.isRequesting = true;
 
-      this.userService.facebookLogin(result.accessToken)
+      this.loginService.facebookLogin(result.accessToken)
         .finally(() => this.isRequesting = false)
         .subscribe(
           result => {
             if (result) {
-              this.router.navigate(['/dashboard/authHome']);
+              this.router.navigate(['/profile/authHome']);
             }
           },
           error => {

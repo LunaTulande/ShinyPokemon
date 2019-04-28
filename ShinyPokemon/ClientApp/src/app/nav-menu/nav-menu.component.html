@@ -14,7 +14,7 @@
       </div>
 
       <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
-        <ul *ngIf="!status" class='nav navbar-nav'>
+        <ul *ngIf="!isLogged" class='nav navbar-nav'>
           <!-- <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
             <a [routerLink]='["/"]' (click)='collapse()'>
               Home
@@ -37,9 +37,9 @@
           </li>
         </ul>
 
-        <ul *ngIf="status" class='nav navbar-nav'>
+        <ul *ngIf="isLogged" class='nav navbar-nav'>
           <li [routerLinkActive]='["link-active"]'>
-            <a [routerLink]='["/dashboard/authHome"]' (click)='collapse()'>
+            <a [routerLink]='["/profile/authHome"]' (click)='collapse()'>
               Perfil
             </a>
           </li>

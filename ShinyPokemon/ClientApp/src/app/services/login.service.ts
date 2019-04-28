@@ -7,7 +7,7 @@ import { ConfigService } from './config.service';
 import { BaseService } from './base.service';
 
 @Injectable()
-export class UserService extends BaseService {
+export class LoginService extends BaseService {
   baseUrl: string = '';
 
   // Observable navItem source

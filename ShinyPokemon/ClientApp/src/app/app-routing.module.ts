@@ -6,7 +6,7 @@ import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.componen
 import { RegistrationFormComponent } from './account/registration-form/registration-form.component';
 import { LoginFormComponent } from './account/login-form/login-form.component';
 import { FacebookLoginComponent } from './account/facebook-login/facebook-login.component';
-import { AuthHomeComponent } from './dashboard/auth-home/auth-home.component';
+import { AuthHomeComponent } from './profile/auth-home/auth-home.component';
 import { AuthGuard } from './utils/auth.guard';
 
 const appRoutes: Routes = [
@@ -18,8 +18,8 @@ const accountRoutes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'facebook-login', component: FacebookLoginComponent },
 ]
-const dashboardRoutes: Routes = [
-  { path: 'dashboard/authHome', component: AuthHomeComponent, canActivate: [AuthGuard] },
+const profileRoutes: Routes = [
+  { path: 'profile/authHome', component: AuthHomeComponent, canActivate: [AuthGuard] },
 ]
 
 @NgModule({
@@ -27,7 +27,7 @@ const dashboardRoutes: Routes = [
     CommonModule,
     RouterModule.forRoot(appRoutes),
     RouterModule.forChild(accountRoutes),
-    RouterModule.forChild(dashboardRoutes)
+    RouterModule.forChild(profileRoutes)
   ],
   exports: [
     RouterModule

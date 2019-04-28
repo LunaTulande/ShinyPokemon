@@ -13,18 +13,18 @@ namespace ShinyPokemon.Controllers
 {
     [Authorize(Policy = "ApiUser")]
     [Route("api/[controller]/[action]")]
-    public class DashboardController : Controller
+    public class ProfileController : Controller
     {
         private readonly ClaimsPrincipal _caller;
         private readonly AppUserContext _appDbContext;
 
-        public DashboardController(UserManager<AppUser> userManager, AppUserContext appDbContext, IHttpContextAccessor httpContextAccessor)
+        public ProfileController(UserManager<AppUser> userManager, AppUserContext appDbContext, IHttpContextAccessor httpContextAccessor)
         {
             _caller = httpContextAccessor.HttpContext.User;
             _appDbContext = appDbContext;
         }
 
-        // GET api/dashboard/authHome
+        // GET api/profile/authHome
         [HttpGet]
         public async Task<IActionResult> AuthHome()
         {
