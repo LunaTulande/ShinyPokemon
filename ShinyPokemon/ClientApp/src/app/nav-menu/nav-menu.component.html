@@ -14,7 +14,7 @@
       </div>
 
       <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
-        <ul *ngIf="!isLogged" class='nav navbar-nav'>
+        <ul *ngIf="!isLogged" class='nav navbar-nav navbar-right'>
           <!-- <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
             <a [routerLink]='["/"]' (click)='collapse()'>
               Home
@@ -22,27 +22,22 @@
           </li> -->
           <li [routerLinkActive]='["link-active"]'>
             <a [routerLink]='["/register"]' (click)='collapse()'>
-              Signup with email
+              SignUp
             </a>
           </li>
           <li [routerLinkActive]='["link-active"]'>
             <a [routerLink]='["/login"]' (click)='collapse()'>
-              Login with email
+              Login
             </a>
           </li>
           <li [routerLinkActive]='["link-active"]'>
             <a [routerLink]='["/facebook-login"]' (click)='collapse()'>
-              Signup/login with facebook
+              Facebook
             </a>
           </li>
         </ul>
 
-        <ul *ngIf="isLogged" class='nav navbar-nav'>
-          <li [routerLinkActive]='["link-active"]'>
-            <a [routerLink]='["/profile/authHome"]' (click)='collapse()'>
-              Perfil
-            </a>
-          </li>
+        <ul *ngIf="isLogged" class='nav navbar-nav navbar-right'>
           <li [routerLinkActive]='["link-active"]'>
             <a [routerLink]='["/"]' (click)='logout()' (click)='collapse()'>
               Logout

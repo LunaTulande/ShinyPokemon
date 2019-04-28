@@ -15,8 +15,12 @@ export class NavMenuComponent implements OnInit, OnDestroy {
   constructor(private loginService: LoginService) { }
 
   ngOnInit() {
-    this.subscription = this.loginService.authNavStatus$.subscribe(
-      status => this.isLogged = status);
+    this.subscription = this.getSubscription();
+  }
+
+  getSubscription(): Subscription {
+    return this.loginService.authNavStatus$.subscribe(
+      (status) => { this.isLogged = status });
   }
 
   logout() {

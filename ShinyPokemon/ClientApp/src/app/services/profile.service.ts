@@ -17,7 +17,7 @@ export class ProfileService extends BaseService {
     this.baseUrl = configService.getApiURI();
   }
 
-  getHomeDetails(): Observable<AuthHome> {
+  getUserDetails(): Observable<AuthHome> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let authToken = localStorage.getItem('auth_token');

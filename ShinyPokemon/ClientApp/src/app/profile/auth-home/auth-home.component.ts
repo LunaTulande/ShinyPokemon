@@ -8,14 +8,14 @@ import { ProfileService } from '../../services/profile.service';
   styleUrls: ['./auth-home.component.css']
 })
 export class AuthHomeComponent implements OnInit {
-  homeDetails: AuthHome;
+  userDetails: AuthHome;
 
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
-    this.profileService.getHomeDetails()
+    this.profileService.getUserDetails()
       .subscribe((homeDetails: AuthHome) => {
-        this.homeDetails = homeDetails;
+        this.userDetails = homeDetails;
       });
   }
 }
