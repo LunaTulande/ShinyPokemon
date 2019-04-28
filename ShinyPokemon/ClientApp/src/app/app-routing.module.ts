@@ -18,16 +18,16 @@ const accountRoutes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'facebook-login', component: FacebookLoginComponent },
 ]
-const dashboardRoutes: Routes = [
-  { path: 'dashboard/authHome', component: AuthHomeComponent, canActivate: [AuthGuard] },
-]
+// const dashboardRoutes: Routes = [
+//   { path: 'dashboard/authHome', component: AuthHomeComponent, canActivate: [AuthGuard] },
+// ]
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forRoot(appRoutes),
-    RouterModule.forChild(accountRoutes),
-    RouterModule.forChild(dashboardRoutes)
+    RouterModule.forChild(accountRoutes)
+    // RouterModule.forChild(dashboardRoutes)
   ],
   exports: [
     RouterModule

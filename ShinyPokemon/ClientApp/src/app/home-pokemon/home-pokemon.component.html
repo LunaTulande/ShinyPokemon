@@ -12,21 +12,27 @@
     <div *ngIf="loading">
       <img src="Images/loadingPokeball.gif">
     </div>
-    <div *ngIf="!loading">
-      <div *ngFor="let pokemon of showList | search:search" id="pokemons">
-        <div class="thumbnail">
+    <div *ngIf="!status">
+      <div *ngIf="!loading">
+        <div *ngFor="let pokemon of showList | search:search" id="pokemons">
+          <div class="thumbnail">
 
-          <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
-            <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
-        
+            <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
+              <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
 
-          <div class="caption">
-            <h5>#{{pokemon.number}} <br> {{pokemon.name}}</h5>
-          </div>
-          </a>
-        </div> <!-- thumbnail -->
-      </div> <!-- ngFor-loop -->
-    </div> <!-- !loading -->
+
+              <div class="caption">
+                <h5>#{{pokemon.number}} <br> {{pokemon.name}}</h5>
+              </div>
+            </a>
+          </div> <!-- thumbnail -->
+        </div> <!-- ngFor-loop -->
+      </div> <!-- !loading -->
+    </div> <!-- status -->
+    <div *ngIf="status">
+        <!-- <p><strong>Name:</strong> {{homeDetails?.firstName}}</p> -->
+        <p>{{ fun }}</p>
+    </div>
   </section>
 
   <app-scroll-top></app-scroll-top>

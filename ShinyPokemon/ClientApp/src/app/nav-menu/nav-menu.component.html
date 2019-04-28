@@ -10,11 +10,13 @@
           <span class='icon-bar'></span>
           <span class='icon-bar'></span>
         </button>
-        <a class='navbar-brand' [routerLink]='["/"]'>Shiny Pok&eacute;mon Go</a>
+        <a *ngIf="!status" class='navbar-brand' [routerLink]='["/"]'>Shiny Pok&eacute;mon Go</a>
+        <a *ngIf="status" class='navbar-brand' [routerLink]='["/"]'>Shiny Pok&eacute;mon Go</a>
+        <!-- <p *ngIf="status" class='navbar-brand'>Shiny Pok&eacute;mon Go</p> -->
       </div>
 
       <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
-        <ul *ngIf="!status" class='nav navbar-nav'>
+        <ul *ngIf="!status" class='nav navbar-nav navbar-right'>
           <!-- <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
             <a [routerLink]='["/"]' (click)='collapse()'>
               Home
@@ -22,22 +24,22 @@
           </li> -->
           <li [routerLinkActive]='["link-active"]'>
             <a [routerLink]='["/register"]' (click)='collapse()'>
-              Signup with email
+              Signup
             </a>
           </li>
           <li [routerLinkActive]='["link-active"]'>
             <a [routerLink]='["/login"]' (click)='collapse()'>
-              Login with email
+              Login
             </a>
           </li>
           <li [routerLinkActive]='["link-active"]'>
             <a [routerLink]='["/facebook-login"]' (click)='collapse()'>
-              Signup/login with facebook
+              Facebook
             </a>
           </li>
         </ul>
 
-        <ul *ngIf="status" class='nav navbar-nav'>
+        <ul *ngIf="status" class='nav navbar-nav navbar-right'>
           <li [routerLinkActive]='["link-active"]'>
             <a [routerLink]='["/dashboard/authHome"]' (click)='collapse()'>
               Perfil
