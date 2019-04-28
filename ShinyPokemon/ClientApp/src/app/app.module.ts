@@ -6,8 +6,6 @@ import { HttpModule, XHRBackend } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { HomePokemonComponent } from './home-pokemon/home-pokemon.component';
 import { HomeMenuComponent } from './home-menu/home-menu.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
