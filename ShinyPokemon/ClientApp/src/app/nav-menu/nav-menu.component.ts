@@ -12,7 +12,7 @@ export class NavMenuComponent implements OnInit, OnDestroy {
   status: boolean;
   subscription: Subscription;
 
-  constructor(private userService: UserService) { } 
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.subscription = this.userService.authNavStatus$.subscribe(

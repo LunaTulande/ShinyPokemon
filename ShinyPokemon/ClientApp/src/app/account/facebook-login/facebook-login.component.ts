@@ -49,7 +49,7 @@ export class FacebookLoginComponent {
         .subscribe(
           result => {
             if (result) {
-              this.router.navigate(['/']);
+              this.router.navigate(['/dashboard/authHome']);
             }
           },
           error => {

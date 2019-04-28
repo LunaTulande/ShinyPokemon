@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../interfaces/pokemon';
 import { PokemonService } from '../services/pokemon.service';
-import { UserService } from '../services/user.service';
-import { Subscription } from 'rxjs/Subscription';
-import { AuthHome } from '../interfaces/auth-home';
 
 @Component({
   selector: 'app-home-pokemon',
@@ -18,23 +15,10 @@ export class HomePokemonComponent implements OnInit {
   search: string = '';
   loading: boolean;
 
-  subscription: Subscription;
-  status: boolean;
-  homeDetails: AuthHome;
-  fun: string = "";
-
-  constructor(private pokemonService: PokemonService, private userService: UserService) { }
+  constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
     this.getPokemons();
-    this.subscription = this.userService.authNavStatus$.subscribe(
-      (status) => { this.status = status; this.fun = "hola"; });  
-    
-  }
-
-  getHomeDetails() {
-    this.userService.getHomeDetails().subscribe(
-      (homeDetails: AuthHome) => { this.homeDetails = homeDetails });
   }
 
   getPokemons(): void {
@@ -51,4 +35,5 @@ export class HomePokemonComponent implements OnInit {
     this.showList = eventValue.showList;
     this.subtitle = eventValue.subtitle;
   }
+
 }

@@ -5,10 +5,6 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { UserRegistration } from '../interfaces/user.registration';
 import { ConfigService } from './config.service';
 import { BaseService } from './base.service';
-import { AuthHome } from '../interfaces/auth-home';
-// Add the RxJS Observable operators we need in this app. ??
-import '../rxjs-operators';
-import { DashboardService } from './dashboard.service';
 
 @Injectable()
 export class UserService extends BaseService {
@@ -21,7 +17,7 @@ export class UserService extends BaseService {
 
   private loggedIn = false;
 
-  constructor(private http: Http, private configService: ConfigService, private dashboardService: DashboardService) {
+  constructor(private http: Http, private configService: ConfigService) {
     super();
     this.loggedIn = !!localStorage.getItem('auth_token');
     // ?? not sure if this the best way to broadcast the status but seems to resolve issue on page refresh where auth status is lost in
@@ -83,17 +79,6 @@ export class UserService extends BaseService {
         this._authNavStatusSource.next(true);
         return true;
       })
-      .catch(this.handleError);
-  }
-
-  getHomeDetails(): Observable<AuthHome> {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    let authToken = localStorage.getItem('auth_token');
-    headers.append('Authorization', `Bearer ${authToken}`);
-
-    return this.http.get(this.baseUrl + "/dashboard/authHome", { headers })
-      .map(response => response.json())
       .catch(this.handleError);
   }
 }
