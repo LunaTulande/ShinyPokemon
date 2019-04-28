@@ -28,8 +28,6 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [
     AppComponent,
     NavMenuComponent,
-    CounterComponent,
-    FetchDataComponent,
     HomePokemonComponent,
     HomeMenuComponent,
     PokemonDetailComponent,
