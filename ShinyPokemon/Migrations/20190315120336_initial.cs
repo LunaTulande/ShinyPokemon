@@ -157,7 +157,7 @@ namespace ShinyPokemon.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Customers",
+                name: "Trainers",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -166,9 +166,9 @@ namespace ShinyPokemon.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Customers", x => x.Id);
+                    table.PrimaryKey("PK_Trainers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Customers_AspNetUsers_IdentityId",
+                        name: "FK_Trainers_AspNetUsers_IdentityId",
                         column: x => x.IdentityId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -215,8 +215,8 @@ namespace ShinyPokemon.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customers_IdentityId",
-                table: "Customers",
+                name: "IX_Trainers_IdentityId",
+                table: "Trainers",
                 column: "IdentityId");
         }
 
@@ -238,7 +238,7 @@ namespace ShinyPokemon.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "Trainers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

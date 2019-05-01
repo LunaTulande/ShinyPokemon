@@ -31,7 +31,7 @@ namespace ShinyPokemon.Controllers
             // retrieve the user info
             // HttpContext.User
             var userId = _caller.Claims.Single(c => c.Type == "id");
-            var customer = await _appDbContext.Customers.Include(c => c.Identity).SingleAsync(c => c.Identity.Id == userId.Value);
+            var customer = await _appDbContext.Trainers.Include(c => c.Identity).SingleAsync(c => c.Identity.Id == userId.Value);
 
             return new OkObjectResult(new
             {

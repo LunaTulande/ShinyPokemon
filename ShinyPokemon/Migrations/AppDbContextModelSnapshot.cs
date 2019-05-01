@@ -198,7 +198,7 @@ namespace ShinyPokemon.Migrations
 
                     b.HasIndex("IdentityId");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Trainers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

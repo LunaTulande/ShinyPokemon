@@ -8,6 +8,6 @@ namespace ShinyPokemon.Data_Access
     {
         public AppUserContext(DbContextOptions<AppUserContext> options) : base(options) { }
         
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Customer> Trainers { get; set; }
     }
 }
