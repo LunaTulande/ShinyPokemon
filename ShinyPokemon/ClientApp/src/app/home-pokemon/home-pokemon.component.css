@@ -86,3 +86,10 @@ sm (para tabletas: pantallas iguales o superiores a 768 px de ancho)
 md (para computadoras portátiles pequeñas: pantallas de 992px o más de ancho)
 lg (para computadoras portátiles y de escritorio: pantallas iguales o superiores a 1200px de ancho)
 */
+
+.logged {
+  opacity: 0.5;
+}
+.registered {
+  border: 1px solid #999;
+}

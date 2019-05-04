@@ -21,8 +21,9 @@ export class HomePokemonComponent implements OnInit {
   subscription: Subscription;
   isLogged: boolean;
   userDetails: AuthHome;
+  userPokemons: number[];
 
-  constructor(private pokemonService: PokemonService, 
+  constructor(private pokemonService: PokemonService,
     private loginService: LoginService, private profileService: ProfileService) { }
 
   ngOnInit(): void {
@@ -32,21 +33,36 @@ export class HomePokemonComponent implements OnInit {
 
   getLoginSubscription(): Subscription {
     return this.loginService.authNavStatus$.subscribe(
-      (status) => { this.isLogged = status ;
-                    if(this.isLogged) {
-                      this.getProfile();}
-                  });
+      (status) => {
+      this.isLogged = status;
+        if (this.isLogged) {
+          this.getProfile();
+        }
+      });
   }
 
   getProfile(): void {
     this.profileService.getUserDetails().subscribe(
       (homeDetails: AuthHome) => { this.userDetails = homeDetails; }
     );
+    this.profileService.getUserPokemons().subscribe(
+      (userPokemons: number[]) => { this.userPokemons = userPokemons; }
+    );
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     // prevent memory leak when component is destroyed
     this.subscription.unsubscribe();
+  }
+
+  pokemonRegistered(id: number): boolean {
+    var pokemonRegistered = false;
+    for(let pokemonId of this.userPokemons){
+      if (pokemonId == id) {
+        pokemonRegistered = true;
+      }
+    }
+    return pokemonRegistered;
   }
 
   getPokemons(): void {
@@ -56,10 +72,10 @@ export class HomePokemonComponent implements OnInit {
       this.loading = false;
       this.shinyPokemonList = data;
       this.showList = this.shinyPokemonList;
-    })
+    });
   }
 
-  setWhatToShow(eventValue): void {
+  setListToShow(eventValue): void {
     this.showList = eventValue.showList;
     this.subtitle = eventValue.subtitle;
   }

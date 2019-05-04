@@ -1,4 +1,4 @@
-<app-home-menu [shinyPokemonList]="shinyPokemonList" (whatToShow)="setWhatToShow($event)"></app-home-menu>
+<app-home-menu [shinyPokemonList]="shinyPokemonList" (listToShow)="setListToShow($event)"></app-home-menu>
 
 <main>
   <form class="navbar-form" role="search">
@@ -13,26 +13,24 @@
       <img src="Images/loadingPokeball.gif">
     </div>
 
-    <div *ngIf="!isLogged">
-      <div *ngIf="!loading">
-        <div *ngFor="let pokemon of showList | search:search" id="pokemons">
-          <div class="thumbnail">
-  
-            <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
-              <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
-          
-  
+    <div *ngIf="!loading">
+      <div *ngFor="let pokemon of showList | search:search" id="pokemons">
+        <div class="thumbnail" 
+          [ngClass]="{'registered': isLogged && pokemonRegistered(pokemon.idpokemon),
+                      'logged': isLogged && !pokemonRegistered(pokemon.idpokemon)
+                     }">
+
+          <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
+            <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
+
             <div class="caption">
               <h5>#{{pokemon.number}} <br> {{pokemon.name}}</h5>
             </div>
-            </a>
-          </div> <!-- thumbnail -->
-        </div> <!-- ngFor-loop -->
-      </div> <!-- !loading -->
-    </div> <!-- !isLogged -->
-    <div *ngIf="isLogged">
-      <p><strong>User: </strong>{{ userDetails?.firstName }}</p>
-    </div>
+          </a>
+        
+        </div> <!-- thumbnail -->
+      </div> <!-- ngFor-loop -->
+    </div> <!-- !loading -->
   </section>
 
   <app-scroll-top></app-scroll-top>

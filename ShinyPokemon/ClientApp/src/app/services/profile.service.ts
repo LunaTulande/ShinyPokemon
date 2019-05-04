@@ -7,6 +7,7 @@ import { AuthHome } from '../interfaces/auth-home';
 
 // Add the RxJS Observable operators we need in this app. ??
 import '../rxjs-operators';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class ProfileService extends BaseService {
@@ -26,5 +27,10 @@ export class ProfileService extends BaseService {
     return this.http.get(this.baseUrl + "/profile/authHome", { headers })
       .map(response => response.json())
       .catch(this.handleError);
+  }
+
+  getUserPokemons(): Observable<number[]> {
+    return of([4, 5, 7, 10]);
+    // return this.http.get<number[]>(this.baseUrl + '/userPokemons')
   }
 }
