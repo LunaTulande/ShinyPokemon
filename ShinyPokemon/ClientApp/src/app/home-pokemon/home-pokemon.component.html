@@ -15,19 +15,24 @@
 
     <div *ngIf="!loading">
       <div *ngFor="let pokemon of showList | search:search" id="pokemons">
-        <div class="thumbnail" 
-          [ngClass]="{'registered': isLogged && pokemonRegistered(pokemon.idpokemon),
-                      'logged': isLogged && !pokemonRegistered(pokemon.idpokemon)
-                     }">
+        <div class="thumbnail"
+          [ngClass]="{'registered': isLogged && pokemonRegistered(pokemon.idpokemon)}">
 
-          <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
-            <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
+          <div [ngClass]="{'logged': isLogged && !pokemonRegistered(pokemon.idpokemon)}">
+            <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
+              <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
 
-            <div class="caption">
-              <h5>#{{pokemon.number}} <br> {{pokemon.name}}</h5>
-            </div>
-          </a>
-        
+              <div class="caption">
+                <h5>#{{pokemon.number}} <br> {{pokemon.name}}</h5>
+              </div>
+            </a>
+          </div>
+          <button *ngIf="isLogged"
+            (click)="onClick(pokemonRegistered(pokemon.idpokemon), pokemon.idpokemon)">
+              {{pokemonRegistered(pokemon.idpokemon) ? 'Remove' : 'Add'}}</button>
+          <!-- <button *ngIf="isLogged && !pokemonRegistered(pokemon.idpokemon)"
+            (click)="addPokedexRegister(pokemon.idpokemon)"><i class="far fa-check-circle"></i></button> -->
+
         </div> <!-- thumbnail -->
       </div> <!-- ngFor-loop -->
     </div> <!-- !loading -->

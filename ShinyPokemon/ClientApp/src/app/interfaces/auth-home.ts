@@ -1,6 +1,5 @@
 export interface AuthHome {
-    message: string;
+    id: number;
     firstName: string;
     pictureUrl: string;
-    facebookId: number;
 }

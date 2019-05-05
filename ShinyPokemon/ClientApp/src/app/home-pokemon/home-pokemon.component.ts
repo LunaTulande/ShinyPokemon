@@ -34,7 +34,7 @@ export class HomePokemonComponent implements OnInit {
   getLoginSubscription(): Subscription {
     return this.loginService.authNavStatus$.subscribe(
       (status) => {
-      this.isLogged = status;
+        this.isLogged = status;
         if (this.isLogged) {
           this.getProfile();
         }
@@ -43,10 +43,12 @@ export class HomePokemonComponent implements OnInit {
 
   getProfile(): void {
     this.profileService.getUserDetails().subscribe(
-      (homeDetails: AuthHome) => { this.userDetails = homeDetails; }
-    );
-    this.profileService.getUserPokemons().subscribe(
-      (userPokemons: number[]) => { this.userPokemons = userPokemons; }
+      (homeDetails: AuthHome) => {
+        this.userDetails = homeDetails;
+        this.profileService.getUserPokemons(this.userDetails.id).subscribe(
+          (userPokemons: number[]) => { this.userPokemons = userPokemons; }
+        );
+      }
     );
   }
 
@@ -55,11 +57,19 @@ export class HomePokemonComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
+  addPokedexRegister(pokemonId: number) {
+    this.profileService.addPokedexRegister(this.userDetails.id, pokemonId).subscribe(
+      () => { this.userPokemons.push(pokemonId) }
+    );
+  }
+
   pokemonRegistered(id: number): boolean {
     var pokemonRegistered = false;
-    for(let pokemonId of this.userPokemons){
-      if (pokemonId == id) {
-        pokemonRegistered = true;
+    if (this.userPokemons) {
+      for (let pokemonId of this.userPokemons) {
+        if (pokemonId == id) {
+          pokemonRegistered = true;
+        }
       }
     }
     return pokemonRegistered;
@@ -80,4 +90,11 @@ export class HomePokemonComponent implements OnInit {
     this.subtitle = eventValue.subtitle;
   }
 
+  onClick(registered: boolean, pokemonId: number) {
+    if(registered){
+      
+    }else{
+      this.addPokedexRegister(pokemonId);
+    }
+  }
 }

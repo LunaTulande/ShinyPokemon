@@ -18,11 +18,14 @@ namespace ShinyPokemon.Controllers
     {
         private readonly ClaimsPrincipal _caller;
         private readonly AppUserContext _appDbContext;
+        private readonly PokemonRepository _pokemonRepository;
 
-        public ProfileController(UserManager<AppUser> userManager, AppUserContext appDbContext, IHttpContextAccessor httpContextAccessor)
+
+        public ProfileController(UserManager<AppUser> userManager, AppUserContext appDbContext, IHttpContextAccessor httpContextAccessor, PokemonRepository pokemonRepository)
         {
             _caller = httpContextAccessor.HttpContext.User;
             _appDbContext = appDbContext;
+            _pokemonRepository = pokemonRepository;
         }
 
         // GET api/profile/authHome
@@ -32,7 +35,7 @@ namespace ShinyPokemon.Controllers
             // retrieve the user info
             // HttpContext.User
             var userId = _caller.Claims.Single(c => c.Type == "id");
-            var trainer = await _appDbContext.Trainers.Include(c => c.Identity).SingleAsync(c => c.Identity.Id == userId.Value);
+            var trainer = await _appDbContext.Trainers.Include(c => c.Identity).FirstOrDefaultAsync(c => c.Identity.Id == userId.Value);
 
             return new OkObjectResult(new
             {
@@ -40,6 +43,22 @@ namespace ShinyPokemon.Controllers
                 trainer.Identity.PictureUrl,
                 trainer.Id
             });
+        }
+        
+        // POST api/profile/pokedexAdd/trainer/5/pokedex/1
+        [HttpPost("trainer/{trainerId}/pokemon/{pokemonId}")]
+        public ActionResult PokedexAdd(int trainerId, int pokemonId)
+        {
+            if (_pokemonRepository.PokedexRegister(trainerId, pokemonId))
+            {
+                return BadRequest(new { message = "the shiny pokemon with id: " + pokemonId + " is already registered for this user."});
+                }
+            else
+            {
+                _pokemonRepository.PokedexAdd(trainerId, pokemonId);
+                return Ok();
+            }
+            
         }
     }
 }

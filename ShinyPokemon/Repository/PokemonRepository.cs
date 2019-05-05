@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using ShinyPokemon.Data_Access;
 
 namespace ShinyPokemon
@@ -80,6 +78,21 @@ namespace ShinyPokemon
         private List<Pokemon> GetChildren(int id)
         {
             return pokemonContext.Pokemons.Where(x => x.EvolutionFrom == id && x.Shiny == true).ToList();
+        }
+
+        //methods in profile controller
+        public void PokedexAdd(int trainerId, int pokemonId)
+        {
+            var pokedex = new Pokedex { TrainerId = trainerId,
+                                        PokemonId = pokemonId };
+
+            pokemonContext.Pokedexes.Add(pokedex);
+            pokemonContext.SaveChanges();
+        }
+
+        public bool PokedexRegister(int trainerId, int pokemonId)
+        {
+            return (pokemonContext.Pokedexes.FirstOrDefault(x => x.TrainerId == trainerId && x.PokemonId == pokemonId) != null) ;
         }
     }
 }

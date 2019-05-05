@@ -10,5 +10,6 @@ namespace ShinyPokemon.Data_Access
         public int PokemonId { get; set; }
 
         public virtual Pokemon Pokemon { get; set; }
+        public virtual Trainer Trainer { get; set; }
     }
 }

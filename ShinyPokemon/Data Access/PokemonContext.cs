@@ -17,6 +17,7 @@ namespace ShinyPokemon.Data_Access
 
         public virtual DbSet<Pokedex> Pokedexes { get; set; }
         public virtual DbSet<Pokemon> Pokemons { get; set; }
+        public virtual DbSet<Trainer> Trainers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,13 +36,17 @@ namespace ShinyPokemon.Data_Access
             {
                 entity.ToTable("Pokedex");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.HasOne(d => d.Pokemon)
                     .WithMany(p => p.Pokedexes)
                     .HasForeignKey(d => d.PokemonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Pokedex_Pokemon");
+
+                entity.HasOne(d => d.Trainer)
+                    .WithMany(p => p.Pokedexes)
+                    .HasForeignKey(d => d.TrainerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Pokedex_Trainers");
             });
 
             modelBuilder.Entity<Pokemon>(entity =>
@@ -67,6 +72,13 @@ namespace ShinyPokemon.Data_Access
                 entity.Property(e => e.ShinyReleaseDate).HasColumnType("date");
 
                 entity.Property(e => e.ShinyReleaseEvent).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Trainer>(entity =>
+            {
+                entity.HasIndex(e => e.IdentityId)
+                    .HasName("IX_Customers_IdentityId")
+                    .IsUnique();
             });
 
             OnModelCreatingPartial(modelBuilder);

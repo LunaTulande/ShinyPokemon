@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ShinyPokemon.Data_Access {
+namespace ShinyPokemon.Data_Access
+{
     public partial class Pokemon
     {
         public Pokemon()
