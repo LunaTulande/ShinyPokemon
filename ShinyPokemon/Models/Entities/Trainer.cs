@@ -1,7 +1,7 @@
 ﻿
 namespace ShinyPokemon.Models.Entities
 {
-    public class Customer
+    public class Trainers
     {
         public int Id { get; set; }
         public string IdentityId { get; set; }

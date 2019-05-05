@@ -186,7 +186,7 @@ namespace ShinyPokemon.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("ShinyPokemon.Models.Entities.Customer", b =>
+            modelBuilder.Entity("ShinyPokemon.Models.Entities.Trainer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -246,7 +246,7 @@ namespace ShinyPokemon.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("ShinyPokemon.Models.Entities.Customer", b =>
+            modelBuilder.Entity("ShinyPokemon.Models.Entities.Trainer", b =>
                 {
                     b.HasOne("ShinyPokemon.Models.Entities.AppUser", "Identity")
                         .WithMany()

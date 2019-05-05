@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using ShinyPokemon.Data_Access;
 
 namespace ShinyPokemon.Controllers
 {

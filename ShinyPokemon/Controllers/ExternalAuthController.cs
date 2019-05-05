@@ -70,7 +70,7 @@ namespace ShinyPokemon.Controllers
 
                 if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
 
-                await _appDbContext.Trainers.AddAsync(new Customer { IdentityId = appUser.Id });
+                await _appDbContext.Trainers.AddAsync(new Trainers { IdentityId = appUser.Id });
                 await _appDbContext.SaveChangesAsync();
             }
 

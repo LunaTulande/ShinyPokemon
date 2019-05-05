@@ -38,7 +38,7 @@ namespace ShinyPokemon.Controllers
 
             if (!result.Succeeded) return new BadRequestObjectResult(Helpers.Errors.AddErrorsToModelState(result, ModelState));
 
-            await _appDbContext.Trainers.AddAsync(new Customer { IdentityId = userIdentity.Id });
+            await _appDbContext.Trainers.AddAsync(new Trainers { IdentityId = userIdentity.Id });
             await _appDbContext.SaveChangesAsync();
 
             return new OkObjectResult("Account created");
