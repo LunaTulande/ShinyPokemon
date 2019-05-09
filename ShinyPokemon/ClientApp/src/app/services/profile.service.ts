@@ -8,42 +8,43 @@ import { catchError } from 'rxjs/operators';
 
 // Add the RxJS Observable operators we need in this app. ??
 import '../rxjs-operators';
-import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class ProfileService extends BaseService {
-  baseUrl: string = '';
+  baseUrl: string;
 
   constructor(private http: Http, private configService: ConfigService) {
     super();
     this.baseUrl = configService.getApiURI();
   }
 
-  getUserDetails(): Observable<AuthHome> {
+  private getHeaders(): Headers{
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let authToken = localStorage.getItem('auth_token');
     headers.append('Authorization', `Bearer ${authToken}`);
+    return headers;
+  }
 
+  getUserDetails(): Observable<AuthHome> {
+    let headers = this.getHeaders();
     return this.http.get(this.baseUrl + "/profile/authHome", { headers })
       .map(response => response.json())
       .catch(this.handleError);
   }
 
   addPokedexRegister(trainerId: number, pokemonId: number): Observable<any>{
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    let authToken = localStorage.getItem('auth_token');
-    headers.append('Authorization', `Bearer ${authToken}`);
-
+    let headers = this.getHeaders();
     return this.http.post(this.baseUrl + "/profile/pokedexAdd/trainer/" + trainerId + "/pokemon/" + pokemonId, {}, { headers })
     .pipe(
       catchError(this.handleError)
     );
   }
 
-  getUserPokemons(trainerId: number): Observable<number[]> {
-    return of([4, 5, 7, 10]);
-    //return this.http.get<number[]>(this.baseUrl + '/' + trainerId + '/userPokemons');
+  getPokedex(trainerId: number): Observable<number[]> {
+    let headers = this.getHeaders();
+    return this.http.get(this.baseUrl + "/profile/pokedex/trainer/" + trainerId, { headers })
+    .map(Response => Response.json())
+    .catch(this.handleError);
   }
 }

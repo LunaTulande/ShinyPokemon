@@ -5,6 +5,7 @@ import { LoginService } from '../services/login.service';
 import { ProfileService } from '../services/profile.service';
 import { Subscription } from 'rxjs/Subscription';
 import { AuthHome } from '../interfaces/auth-home';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-home-pokemon',
@@ -21,7 +22,7 @@ export class HomePokemonComponent implements OnInit {
   subscription: Subscription;
   isLogged: boolean;
   userDetails: AuthHome;
-  userPokemons: number[];
+  userPokemons: number[] = [];
 
   constructor(private pokemonService: PokemonService,
     private loginService: LoginService, private profileService: ProfileService) { }
@@ -45,7 +46,7 @@ export class HomePokemonComponent implements OnInit {
     this.profileService.getUserDetails().subscribe(
       (homeDetails: AuthHome) => {
         this.userDetails = homeDetails;
-        this.profileService.getUserPokemons(this.userDetails.id).subscribe(
+        this.profileService.getPokedex(this.userDetails.id).subscribe(
           (userPokemons: number[]) => { this.userPokemons = userPokemons; }
         );
       }
@@ -64,15 +65,13 @@ export class HomePokemonComponent implements OnInit {
   }
 
   pokemonRegistered(id: number): boolean {
-    var pokemonRegistered = false;
-    if (this.userPokemons) {
-      for (let pokemonId of this.userPokemons) {
-        if (pokemonId == id) {
-          pokemonRegistered = true;
-        }
-      }
+    var idFind = this.userPokemons.find(x => x == id);
+
+    if (idFind) {
+          return true;
+    }else{
+      return false;
     }
-    return pokemonRegistered;
   }
 
   getPokemons(): void {

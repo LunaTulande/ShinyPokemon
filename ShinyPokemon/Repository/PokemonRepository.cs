@@ -81,6 +81,11 @@ namespace ShinyPokemon
         }
 
         //methods in profile controller
+        public bool PokedexRegister(int trainerId, int pokemonId)
+        {
+            return (pokemonContext.Pokedexes.FirstOrDefault(x => x.TrainerId == trainerId && x.PokemonId == pokemonId) != null);
+        }
+
         public void PokedexAdd(int trainerId, int pokemonId)
         {
             var pokedex = new Pokedex { TrainerId = trainerId,
@@ -90,9 +95,9 @@ namespace ShinyPokemon
             pokemonContext.SaveChanges();
         }
 
-        public bool PokedexRegister(int trainerId, int pokemonId)
+        public List<int> GetPokedex(int trainerId)
         {
-            return (pokemonContext.Pokedexes.FirstOrDefault(x => x.TrainerId == trainerId && x.PokemonId == pokemonId) != null) ;
+            return pokemonContext.Pokedexes.Where(x => x.TrainerId == trainerId).Select(x => x.PokemonId).ToList();
         }
     }
 }

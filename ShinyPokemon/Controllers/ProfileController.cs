@@ -51,7 +51,7 @@ namespace ShinyPokemon.Controllers
         {
             if (_pokemonRepository.PokedexRegister(trainerId, pokemonId))
             {
-                return BadRequest(new { message = "the shiny pokemon with id: " + pokemonId + " is already registered for this user."});
+                return BadRequest(new { message = "the shiny pokemon with id: " + pokemonId + " is already registered for this trainer."});
                 }
             else
             {
@@ -59,6 +59,13 @@ namespace ShinyPokemon.Controllers
                 return Ok();
             }
             
+        }
+
+        // GET api/profile/pokedex/trainer/5
+        [HttpGet("trainer/{trainerId}")]
+        public List<int> Pokedex(int trainerId)
+        {
+            return _pokemonRepository.GetPokedex(trainerId);
         }
     }
 }
