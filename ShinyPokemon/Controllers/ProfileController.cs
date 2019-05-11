@@ -45,13 +45,13 @@ namespace ShinyPokemon.Controllers
             });
         }
         
-        // POST api/profile/pokedexAdd/trainer/5/pokedex/1
+        // POST api/profile/pokedexAdd/trainer/5/pokemon/1
         [HttpPost("trainer/{trainerId}/pokemon/{pokemonId}")]
         public ActionResult PokedexAdd(int trainerId, int pokemonId)
         {
             if (_pokemonRepository.PokedexRegister(trainerId, pokemonId))
             {
-                return BadRequest(new { message = "the shiny pokemon with id: " + pokemonId + " is already registered for this trainer."});
+                return BadRequest(new { message = "The shiny pokemon with id: " + pokemonId + " is already registered for this trainer."});
                 }
             else
             {
@@ -66,6 +66,21 @@ namespace ShinyPokemon.Controllers
         public List<int> Pokedex(int trainerId)
         {
             return _pokemonRepository.GetPokedex(trainerId);
+        }
+
+        // REMOVE api/profile/pokedexRemove/trainer/5/pokemon/1
+        [HttpDelete("trainer/{trainerId}/pokemon/{pokemonId}")]
+        public ActionResult PokedexRemove(int trainerId, int pokemonId)
+        {
+            if(_pokemonRepository.PokedexRegister(trainerId, pokemonId))
+            {
+                _pokemonRepository.PokedexRemove(trainerId, pokemonId);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(new { message = "The shiny pokemon with id: " + pokemonId + " is not registered for this trainer." });
+            }
         }
     }
 }

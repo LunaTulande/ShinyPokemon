@@ -18,7 +18,7 @@ export class ProfileService extends BaseService {
     this.baseUrl = configService.getApiURI();
   }
 
-  private getHeaders(): Headers{
+  private getHeaders(): Headers {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let authToken = localStorage.getItem('auth_token');
@@ -33,7 +33,7 @@ export class ProfileService extends BaseService {
       .catch(this.handleError);
   }
 
-  addPokedexRegister(trainerId: number, pokemonId: number): Observable<any>{
+  addPokedexRegister(trainerId: number, pokemonId: number): Observable<any> {
     let headers = this.getHeaders();
     return this.http.post(this.baseUrl + "/profile/pokedexAdd/trainer/" + trainerId + "/pokemon/" + pokemonId, {}, { headers })
     .pipe(
@@ -47,4 +47,13 @@ export class ProfileService extends BaseService {
     .map(Response => Response.json())
     .catch(this.handleError);
   }
+
+  removePokedexRegister(trainerId: number, pokemonId: number): Observable<any> {
+    let headers = this.getHeaders();
+    return this.http.delete(this.baseUrl + "/profile/pokedexRemove/trainer/" + trainerId + "/pokemon/" + pokemonId, { headers })
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+  
 }

@@ -68,10 +68,21 @@ export class HomePokemonComponent implements OnInit {
     var idFind = this.userPokemons.find(x => x == id);
 
     if (idFind) {
-          return true;
-    }else{
+      return true;
+    } else {
       return false;
     }
+  }
+
+  removePokedexRegister(pokemonId: number) {
+    this.profileService.removePokedexRegister(this.userDetails.id, pokemonId)
+     .subscribe(
+       (index: number) => { index = this.userPokemons.indexOf(pokemonId, 0);
+               if(index > -1){
+                 this.userPokemons.splice(index, 1);
+               }  
+             }
+     );
   }
 
   getPokemons(): void {
@@ -90,9 +101,9 @@ export class HomePokemonComponent implements OnInit {
   }
 
   onClick(registered: boolean, pokemonId: number) {
-    if(registered){
-      
-    }else{
+    if (registered) {
+      this.removePokedexRegister(pokemonId);
+    } else {
       this.addPokedexRegister(pokemonId);
     }
   }

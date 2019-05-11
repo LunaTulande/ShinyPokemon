@@ -99,5 +99,12 @@ namespace ShinyPokemon
         {
             return pokemonContext.Pokedexes.Where(x => x.TrainerId == trainerId).Select(x => x.PokemonId).ToList();
         }
+
+        public void PokedexRemove(int trainerId, int pokemonId)
+        {
+            var register = pokemonContext.Pokedexes.FirstOrDefault(x => x.TrainerId == trainerId && x.PokemonId == pokemonId);
+            pokemonContext.Pokedexes.Remove(register);
+            pokemonContext.SaveChanges();
+        }
     }
 }
