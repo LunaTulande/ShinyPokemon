@@ -27,7 +27,7 @@
               </div>
             </a>
           </div>
-          <hr>
+          <hr *ngIf="isLogged">
           <button *ngIf="isLogged && !pokemonRegistered(pokemon.idpokemon)"
             (click)="addPokedexRegister(pokemon.idpokemon)"><img src="Images/openPokeball.png" class="logged"></button>
           <button *ngIf="isLogged && pokemonRegistered(pokemon.idpokemon)"

@@ -1,0 +1,13 @@
+form {
+  margin: auto;
+  padding: 0px 15px;
+}
+
+input[type="text"], input[type="password"], .alert {
+  width: 300px;
+  margin: auto;
+}
+
+button {
+  padding: 6px 125px;
+}

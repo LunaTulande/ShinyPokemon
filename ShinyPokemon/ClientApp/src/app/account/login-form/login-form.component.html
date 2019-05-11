@@ -1,23 +1,22 @@
-<div class="new-user-alert">
-  <div *ngIf="brandNew" class="alert alert-success" role="alert">
-    <strong>All set!</strong> Please login with your account
+<main>
+  <div class="new-user-alert">
+    <div *ngIf="brandNew" class="alert alert-success" role="alert">
+      <strong>All set!</strong> Please login with your account
+    </div>
+    <h2>Login</h2>
+    <p>Welcome back</p>
   </div>
-  <h2>Login</h2>
-</div>
 
-<div class="col-md-6">
   <form #f="ngForm" novalidate (ngSubmit)="login(f)">
-
     <div class="form-group">
-      <label for="email">Email</label>
-      <input id="email" type="text" required name="email" class="form-control" placeholder="Email"
-        [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
-      <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid
-        email</small>
+      <input id="email" type="text" required name="email" class="form-control" 
+        placeholder="Email" [ngModel]="credentials.email" #email="ngModel" tmFocus validateEmail>
+      <small [hidden]="email.valid || (email.pristine && !submitted)" 
+        class="text-danger">Please enter a valid email</small>
     </div>
     <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" required name="password" placeholder="Password" ngModel>
+      <input type="password" class="form-control" id="password" required name="password" 
+        placeholder="Password" ngModel>
     </div>
 
     <div class="form-group">
@@ -29,4 +28,7 @@
     </div>
 
   </form>
-</div>
+
+  <p>Or</p>
+  <app-facebook-login></app-facebook-login>
+</main>

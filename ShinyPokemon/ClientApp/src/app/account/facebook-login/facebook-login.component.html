@@ -1,5 +1,9 @@
-<a *ngIf="!isRequesting" href="javascript:void(0)" (click)="launchFbLogin()">
-  <img class="img-fluid" src="assets/facebook-login.png" /></a>
+<button class="btn btn-primary">
+  <a *ngIf="!isRequesting" href="javascript:void(0)" (click)="launchFbLogin()">
+    <i class="fab fa-facebook-square" id="logo"></i> 
+    Continue with Facebook
+  </a>
+</button>
 <div *ngIf="failed" class="alert alert-danger" role="alert">
   <p><strong>Oops!</strong> Your facebook login failed.</p>
   <ul>

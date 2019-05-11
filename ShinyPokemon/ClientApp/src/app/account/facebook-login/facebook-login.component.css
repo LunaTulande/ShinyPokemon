@@ -1,0 +1,16 @@
+button {
+  padding: 4px 55px;
+}
+
+#logo {
+  font-size: 23px;
+  padding-right: 10px;
+}
+
+a {
+  color: #f5f5f5;
+}
+
+a:hover {
+  text-decoration: none;
+}
