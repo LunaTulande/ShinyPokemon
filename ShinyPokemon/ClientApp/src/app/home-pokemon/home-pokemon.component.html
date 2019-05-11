@@ -1,4 +1,4 @@
-<app-home-menu [shinyPokemonList]="shinyPokemonList" (listToShow)="setListToShow($event)"></app-home-menu>
+<app-home-menu [shinyPokemonList]="shinyPokemonList" (whatToShow)="setWhatToShow($event)"></app-home-menu>
 
 <main>
   <form class="navbar-form" role="search">
@@ -27,11 +27,11 @@
               </div>
             </a>
           </div>
-          <button *ngIf="isLogged"
-            (click)="onClick(pokemonRegistered(pokemon.idpokemon), pokemon.idpokemon)">
-              {{pokemonRegistered(pokemon.idpokemon) ? 'Remove' : 'Add'}}</button>
-          <!-- <button *ngIf="isLogged && !pokemonRegistered(pokemon.idpokemon)"
-            (click)="addPokedexRegister(pokemon.idpokemon)"><i class="far fa-check-circle"></i></button> -->
+          <hr>
+          <button *ngIf="isLogged && !pokemonRegistered(pokemon.idpokemon)"
+            (click)="addPokedexRegister(pokemon.idpokemon)"><img src="Images/openPokeball.png" class="logged"></button>
+          <button *ngIf="isLogged && pokemonRegistered(pokemon.idpokemon)"
+            (click)="removePokedexRegister(pokemon.idpokemon)"><img src="Images/closePokeball.png"></button>
 
         </div> <!-- thumbnail -->
       </div> <!-- ngFor-loop -->

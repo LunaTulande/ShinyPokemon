@@ -5,7 +5,6 @@ import { LoginService } from '../services/login.service';
 import { ProfileService } from '../services/profile.service';
 import { Subscription } from 'rxjs/Subscription';
 import { AuthHome } from '../interfaces/auth-home';
-import { element } from 'protractor';
 
 @Component({
   selector: 'app-home-pokemon',
@@ -95,16 +94,9 @@ export class HomePokemonComponent implements OnInit {
     });
   }
 
-  setListToShow(eventValue): void {
+  setWhatToShow(eventValue): void {
     this.showList = eventValue.showList;
     this.subtitle = eventValue.subtitle;
   }
 
-  onClick(registered: boolean, pokemonId: number) {
-    if (registered) {
-      this.removePokedexRegister(pokemonId);
-    } else {
-      this.addPokedexRegister(pokemonId);
-    }
-  }
 }
