@@ -25,6 +25,27 @@ a {
   text-decoration: none;
 }
 
+/* Logged styles */
+
+.logged {
+  opacity: 0.5;
+}
+
+.registered {
+  border: 1px solid #999;
+}
+
+hr {
+  margin: 0px 4px 4px;
+  border-top: 1px solid #ddd;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 1px 20px;
+}
+
 /* Phones devices or window: 600px and down */
 @media only screen and (max-device-width: 600px),
 (max-width: 600px) {
@@ -73,26 +94,4 @@ a {
     border: 1px solid #66a3ff;
     border-radius: 5px;
   }
-}
-
-/*Bootstrap
-xs (para teléfonos - pantallas de menos de 768px de ancho)
-sm (para tabletas: pantallas iguales o superiores a 768 px de ancho)
-md (para computadoras portátiles pequeñas: pantallas de 992px o más de ancho)
-lg (para computadoras portátiles y de escritorio: pantallas iguales o superiores a 1200px de ancho)
-*/
-
-.logged {
-  opacity: 0.5;
-}
-.registered {
-  border: 1px solid #999;
-}
-hr{
-  margin: 0px 4px 4px;
-  border-top: 1px solid #ddd;
-}
-button{
-  background: none;
-  border: none;
 }

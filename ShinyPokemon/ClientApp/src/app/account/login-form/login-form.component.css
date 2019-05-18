@@ -2,16 +2,45 @@
   padding-top: 2.5rem
 }
 
+h2 {
+  margin-bottom: 30px;
+}
+
 form {
   margin: auto;
   padding: 0px 15px;
 }
 
-input[type="text"], input[type="password"], .alert {
-  width: 300px;
+input[type="text"],
+input[type="password"],
+.alert,
+section {
   margin: auto;
 }
 
-button {
-  padding: 6px 130px;
+/* Phones devices or window: 600px and down */
+@media only screen and (max-device-width: 600px),
+(min-width: 600px) {
+  section {
+    width: 90%;
+  }
+}
+
+/* Medium devices (landscape phones) or window: 600px and up */
+@media only screen and (min-device-width: 600px),
+(min-width: 600px) {
+  section {
+    width: 40%;
+  }
+}
+
+/* Medium devices (landscape big phones, portrait tablets) or window: 768px and up */
+@media only screen and (min-device-width: 768px),
+(min-width:768px) {}
+
+/* Small laptops, desktops: 1100px and up */
+@media only screen and (min-device-width: 1100px) {
+  section {
+    width: 30%;
+  }
 }

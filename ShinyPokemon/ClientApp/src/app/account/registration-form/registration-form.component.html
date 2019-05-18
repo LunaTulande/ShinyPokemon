@@ -1,31 +1,34 @@
 <main>
-  <h3>Sign Up</h3>
-  <p>Please enter your information to sing up and track your shiny pokemons</p>
+  <h2>Sign Up</h2>
+  <p>Sing up and track your shiny pok&eacute;mon</p>
 
-  <form #f="ngForm" novalidate (ngSubmit)="registerUser(f)">
-    <div class="form-group">
-      <input type="text" class="form-control" id="first-name" placeholder="Name" name="firstName" tmFocus ngModel>
-    </div>
-    <div class="form-group">
-      <input id="email" type="text" required name="email" validateEmail class="form-control" placeholder="Email" ngModel
-        #email="ngModel">
-      <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid
-        email</small>
-    </div>
-    <div class="form-group">
-      <input type="password" class="form-control" id="password" name="password" placeholder="Password" ngModel>
-    </div>
+  <section>
+    <form #f="ngForm" novalidate (ngSubmit)="registerUser(f)">
+      <div class="form-group">
+        <input type="text" class="form-control" id="first-name" placeholder="Name" name="firstName" tmFocus ngModel>
+      </div>
+      <div class="form-group">
+        <input id="email" type="text" required name="email" validateEmail class="form-control" placeholder="Email"
+          ngModel #email="ngModel">
+        <small [hidden]="email.valid || (email.pristine && !submitted)" class="text-danger">Please enter a valid
+          email</small>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" ngModel>
+      </div>
 
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary" [disabled]="f.invalid || isRequesting">Sign Up</button>
-    </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="f.invalid || isRequesting">Sign Up</button>
+      </div>
 
-    <div *ngIf="errors" class="alert alert-danger" role="alert">
-      <strong>Oops!</strong> {{errors}}
-    </div>
+      <div *ngIf="errors" class="alert alert-danger" role="alert">
+        <strong>Oops!</strong> {{errors}}
+      </div>
 
-  </form>
+    </form>
 
-  <p>Or</p>
-  <app-facebook-login></app-facebook-login>
+    <p>Or</p>
+    <app-facebook-login></app-facebook-login>
+  </section>
+
 </main>

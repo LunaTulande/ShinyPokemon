@@ -1,55 +1,10 @@
 /* Highlighting rules for nav menu items */
-/* li.link-active a,
+li.link-active a,
 li.link-active a:hover,
 li.link-active a:focus {
-    background-color: #4189C7;
-    color: white;
-} */
-
-.navbar-brand {
     color: white;
 }
 
-@media (min-width: 768px) {
-    /* On small screens, convert the nav menu to a vertical sidebar */
-    /* .main-nav {
-        height: 20px;
-        width: 100%;
-    }
-    .navbar {
-        border-radius: 0px;
-        border-width: 0px;
-        height: 100%;
-    }
-    .navbar-header {
-        float: left;
-        border-right: 1px solid #bbb;
-    }
-    .navbar-header a {
-        min-width: 160px;
-    }
-    .navbar-collapse {
-        border-top: 1px solid #444;
-        padding: 0px;
-    }
-    .navbar ul {
-        float: left;
-    }
-    .navbar li {
-        float: left;
-        font-size: 15px;
-        margin: 6px;
-        border-right: 1px solid #bbb;
-    }
-    .navbar li a {
-        padding: 10px 16px;
-        border-radius: 4px;
-    }
-    .navbar a { */
-        /* If a menu item's text is too long, truncate it */
-        /* width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    } */
+.navbar-brand {
+    color: white;
 }
