@@ -4,7 +4,7 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { LoginFormComponent } from './login-form/login-form.component';
 import { FacebookLoginComponent } from './facebook-login/facebook-login.component';
 import { FormsModule } from '@angular/forms';
-import { EmailValidator } from '../auths/email-validator.directive';
+import { EmailValidator } from '../utils/email-validator.directive';
 import { LoginService } from '../services/login.service';
 
 @NgModule({
