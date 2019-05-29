@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthHomeComponent } from './auth-home/auth-home.component';
-import { AuthGuard } from '../utils/auth.guard';
+import { AuthGuard } from '../auths/auth.guard';
 import { ProfileService } from '../services/profile.service';
 
 @NgModule({
