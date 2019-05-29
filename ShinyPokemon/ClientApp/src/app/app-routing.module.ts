@@ -7,7 +7,7 @@ import { RegistrationFormComponent } from './account/registration-form/registrat
 import { LoginFormComponent } from './account/login-form/login-form.component';
 import { FacebookLoginComponent } from './account/facebook-login/facebook-login.component';
 import { AuthHomeComponent } from './profile/auth-home/auth-home.component';
-import { AuthGuard } from './utils/auth.guard';
+import { AuthGuard } from './auths/auth.guard';
 
 const appRoutes: Routes = [
   { path: '', component: HomePokemonComponent, pathMatch: 'full' },
