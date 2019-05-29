@@ -20,7 +20,6 @@ namespace ShinyPokemon.Data_Access
         public DateTime? ShinyReleaseDate { get; set; }
         public string ShinyReleaseEvent { get; set; }
         public int EvolutionFrom { get; set; }
-        public string Obtainable { get; set; }
 
         public virtual ICollection<Pokedex> Pokedexes { get; set; }
     }

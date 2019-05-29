@@ -67,8 +67,6 @@ namespace ShinyPokemon.Data_Access
                     .IsRequired()
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Obtainable).HasMaxLength(50);
-
                 entity.Property(e => e.ShinyReleaseDate).HasColumnType("date");
 
                 entity.Property(e => e.ShinyReleaseEvent).HasMaxLength(50);

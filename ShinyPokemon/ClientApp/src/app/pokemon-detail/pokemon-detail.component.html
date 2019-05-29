@@ -19,7 +19,7 @@
   </nav>
 
   <header class="page-header">
-    <h1>#{{pokemon?.number}} {{pokemon?.name}}</h1>
+    <h2>#{{pokemon?.number}} {{pokemon?.name}}</h2>
   </header>
 
   <section *ngIf="loading">
@@ -38,7 +38,6 @@
         <li>Generation: {{pokemon?.generation}}</li>
         <li>Shiny Release Date: {{pokemon?.shinyReleaseDate | date : 'MMM dd, yyyy'}}</li>
         <li>Event: {{pokemon?.shinyReleaseEvent}}</li>
-        <li>Obtainable: {{pokemon?.obtainable}}</li>
       </ul>
     </div>
   </section>
@@ -83,11 +82,5 @@
       </div>
     </div> <!-- evolutions  -->
   </section> <!-- !loading  -->
-
-  <footer>
-    <button type="button" class="btn btn-default">
-      <a [routerLink]='["/"]'>Home</a>
-    </button>
-  </footer>
-
+  
 </main>

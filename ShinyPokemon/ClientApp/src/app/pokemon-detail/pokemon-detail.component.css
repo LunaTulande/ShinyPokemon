@@ -10,6 +10,10 @@
   float: left;
 }
 
+h2, h3 {
+  margin-top: 0px;
+}
+
 .btn-default {
   margin-top: 8px;
   border-color: transparent;
@@ -45,9 +49,10 @@ ul {
 }
 
 #evolutions {
-  margin: auto; 
+  margin: auto;
   width: 80%;
 }
+
 a img {
   width: 80px;
   height: 80px;
@@ -76,12 +81,9 @@ a img {
   a:hover {
     text-decoration: none;
   }
-  a:hover img{
+
+  a:hover img {
     box-shadow: 0px 1px 25px 0px #a6a6a6;
   }
-
-  footer {
-    border-top: 1px solid #eee;
-    margin-top: 20px;
-  }
+  
 }

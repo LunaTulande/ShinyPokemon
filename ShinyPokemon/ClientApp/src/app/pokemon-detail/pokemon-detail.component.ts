@@ -24,7 +24,6 @@ export class PokemonDetailComponent implements OnInit {
   ngOnInit(): void {
     //subscribe to the parameters observable
     this.activedRoute.paramMap.subscribe(params => {
-      console.log(params.get('id'));
       this.pokemonId = +params.get('id');
     });
 
@@ -46,21 +45,18 @@ export class PokemonDetailComponent implements OnInit {
   getCurrentPokemon(): void {
     this.loading = true;
     this.pokemonService.getPokemon(this.pokemonId).subscribe(data => {
-      console.log(data);
       this.loading = false;
       this.pokemon = data;
     })
   }
   getPrevious(): void {
     this.pokemonService.getPreviousShiny(this.pokemonId).subscribe(data => {
-      console.log(data);
       this.previousP = data;
     })
   }
 
   getNext(): void {
     this.pokemonService.getNextShiny(this.pokemonId).subscribe(data => {
-      console.log(data);
       this.nextP = data;
     })
   }
@@ -68,10 +64,8 @@ export class PokemonDetailComponent implements OnInit {
   getEvolutionLine(): void {
     this.loading = true;
     this.pokemonService.getEvolutionLine(this.pokemonId).subscribe(data => {
-      console.log(data);
       this.loading = false;
       this.evolutionLine = data;
-      console.log(this.evolutionLine);
     })
   }
 }
