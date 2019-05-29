@@ -1,37 +1,50 @@
-<app-home-menu [shinyPokemonList]="shinyPokemonList" (whatToShow)="setWhatToShow($event)"></app-home-menu>
+<app-home-menu [shinyPokemonList]="shinyPokemonList" (listToShow)="setListToShow($event)"></app-home-menu>
 
 <main>
-  <form class="navbar-form" role="search">
+  <form>
     <div class="form-group">
       <input type="text" class="form-control" placeholder="Search a Pok&eacute;mon" name="search" [(ngModel)]="search">
     </div>
   </form>
 
   <section>
-    <h1>{{subtitle}} PoGo Shiny Pok&eacute;mon</h1>
+    <h1>{{showUserPokemons ? "My " + subtitle : subtitle}} PoGo Shiny Pok&eacute;mon</h1>
+
+    <div class="container-fluid" *ngIf="isLogged">
+      <label for="check-switch" id="labelTitle">My Pok&eacute;mon</label>
+
+      <label class="switch">
+        <input id="check-switch" type="checkbox" name="userPokemons" [(ngModel)]="showUserPokemons">
+        <span class="slider"></span>
+      </label>
+    </div>
+
     <div *ngIf="loading">
       <img src="Images/loadingPokeball.gif">
     </div>
 
     <div *ngIf="!loading">
-      <div *ngFor="let pokemon of showList | search:search" id="pokemons">
-        <div class="thumbnail"
-          [ngClass]="{'registered': isLogged && pokemonRegistered(pokemon.idpokemon)}">
+      <div *ngFor="let pokemon of showList | userPokemons:[showUserPokemons,userIdPokemons,isLogged] | search:search"
+        id="pokemons">
+        <div class="thumbnail" [ngClass]="{'logged': isLogged && !isPokemonRegistered(pokemon.idpokemon),
+                    'registered': isLogged && isPokemonRegistered(pokemon.idpokemon)}">
 
-          <div [ngClass]="{'logged': isLogged && !pokemonRegistered(pokemon.idpokemon)}">
-            <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
-              <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
+          <a [routerLink]="['/pokemon-detail', pokemon.idpokemon]">
+            <img src="{{pokemon.imgShiny}}" alt="Shiny {{pokemon.name}}">
 
-              <div class="caption">
-                <h5>#{{pokemon.number}} <br> {{pokemon.name}}</h5>
-              </div>
-            </a>
+            <div class="caption">
+              <h5>#{{pokemon.number}} <br> {{pokemon.name}}</h5>
+            </div>
+          </a>
+
+          <div *ngIf="isLogged">
+            <hr>
+            <button *ngIf="!isPokemonRegistered(pokemon.idpokemon)" (click)="addPokedexRegister(pokemon.idpokemon)"><img
+                src="Images/openPokeball.png" class="logged"></button>
+
+            <button *ngIf="isPokemonRegistered(pokemon.idpokemon)"
+              (click)="removePokedexRegister(pokemon.idpokemon)"><img src="Images/closePokeball.png"></button>
           </div>
-          <hr *ngIf="isLogged">
-          <button *ngIf="isLogged && !pokemonRegistered(pokemon.idpokemon)"
-            (click)="addPokedexRegister(pokemon.idpokemon)"><img src="Images/openPokeball.png" class="logged"></button>
-          <button *ngIf="isLogged && pokemonRegistered(pokemon.idpokemon)"
-            (click)="removePokedexRegister(pokemon.idpokemon)"><img src="Images/closePokeball.png"></button>
 
         </div> <!-- thumbnail -->
       </div> <!-- ngFor-loop -->

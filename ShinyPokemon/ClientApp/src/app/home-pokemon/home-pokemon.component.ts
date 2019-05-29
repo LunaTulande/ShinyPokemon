@@ -15,13 +15,14 @@ import { AuthHome } from '../interfaces/auth-home';
 export class HomePokemonComponent implements OnInit {
   shinyPokemonList: Pokemon[]; //first list
   showList: Pokemon[]; //List to show
-  subtitle: string = 'All';
+  subtitle: string = '';
   search: string = '';
   loading: boolean;
   subscription: Subscription;
   isLogged: boolean;
   userDetails: AuthHome;
-  userPokemons: number[] = [];
+  userIdPokemons: number[] = [];
+  showUserPokemons: boolean = false;
 
   constructor(private pokemonService: PokemonService,
     private loginService: LoginService, private profileService: ProfileService) { }
@@ -29,6 +30,20 @@ export class HomePokemonComponent implements OnInit {
   ngOnInit(): void {
     this.getPokemons();
     this.subscription = this.getLoginSubscription();
+  }
+
+  getPokemons(): void {
+    this.loading = true;
+    this.pokemonService.getPokemons().subscribe(data => {
+      this.loading = false;
+      this.shinyPokemonList = data;
+      this.showList = this.shinyPokemonList;
+    });
+  }
+
+  setListToShow(eventValue): void {
+    this.showList = eventValue.showList;
+    this.subtitle = eventValue.subtitle;
   }
 
   getLoginSubscription(): Subscription {
@@ -46,7 +61,7 @@ export class HomePokemonComponent implements OnInit {
       (homeDetails: AuthHome) => {
         this.userDetails = homeDetails;
         this.profileService.getPokedex(this.userDetails.id).subscribe(
-          (userPokemons: number[]) => { this.userPokemons = userPokemons; }
+          (userIdPokemons: number[]) => { this.userIdPokemons = userIdPokemons; }
         );
       }
     );
@@ -59,13 +74,12 @@ export class HomePokemonComponent implements OnInit {
 
   addPokedexRegister(pokemonId: number) {
     this.profileService.addPokedexRegister(this.userDetails.id, pokemonId).subscribe(
-      () => { this.userPokemons.push(pokemonId) }
+      () => { this.userIdPokemons.push(pokemonId) }
     );
   }
 
-  pokemonRegistered(id: number): boolean {
-    var idFind = this.userPokemons.find(x => x == id);
-
+  isPokemonRegistered(id: number): boolean {
+    var idFind = this.userIdPokemons.find(x => x == id);
     if (idFind) {
       return true;
     } else {
@@ -75,28 +89,14 @@ export class HomePokemonComponent implements OnInit {
 
   removePokedexRegister(pokemonId: number) {
     this.profileService.removePokedexRegister(this.userDetails.id, pokemonId)
-     .subscribe(
-       (index: number) => { index = this.userPokemons.indexOf(pokemonId, 0);
-               if(index > -1){
-                 this.userPokemons.splice(index, 1);
-               }  
-             }
-     );
-  }
-
-  getPokemons(): void {
-    this.loading = true;
-    this.pokemonService.getPokemons().subscribe(data => {
-      console.log(data);
-      this.loading = false;
-      this.shinyPokemonList = data;
-      this.showList = this.shinyPokemonList;
-    });
-  }
-
-  setWhatToShow(eventValue): void {
-    this.showList = eventValue.showList;
-    this.subtitle = eventValue.subtitle;
+      .subscribe(
+        (index: number) => {
+          index = this.userIdPokemons.indexOf(pokemonId, 0);
+          if (index > -1) {
+            this.userIdPokemons.splice(index, 1);
+          }
+        }
+      );
   }
 
 }

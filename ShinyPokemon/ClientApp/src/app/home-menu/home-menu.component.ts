@@ -8,7 +8,7 @@ import { Pokemon } from '../interfaces/pokemon';
 })
 export class HomeMenuComponent implements OnInit {
   @Input() shinyPokemonList: Pokemon[]; //first list
-  @Output() whatToShow: EventEmitter<{ showList: Pokemon[], subtitle: string }> = new EventEmitter();
+  @Output() listToShow: EventEmitter<{ showList: Pokemon[], subtitle: string }> = new EventEmitter();
   showList: Pokemon[]; //List to show
   subtitle: string;
   generations: number[] = [1, 2, 3, 4];
@@ -27,13 +27,13 @@ export class HomeMenuComponent implements OnInit {
 
   showGeneration(gen: number): void {
     if (this.selectedGen == gen) {
-      this.subtitle = 'All';
+      this.subtitle = '';
       this.showList = this.shinyPokemonList;
     } else {
       this.subtitle = 'Gen ' + gen;
       this.showList = this.shinyPokemonList.filter(pokemon => pokemon.generation == gen);
     }
-    this.whatToShow.emit({ showList: this.showList, subtitle: this.subtitle });
+    this.listToShow.emit({ showList: this.showList, subtitle: this.subtitle });
   }
   
 }

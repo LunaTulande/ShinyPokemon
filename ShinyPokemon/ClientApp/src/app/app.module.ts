@@ -23,6 +23,7 @@ import { FacebookLoginComponent } from './account/facebook-login/facebook-login.
 import { ProfileService } from './services/profile.service';
 import { AuthenticateXHRBackend } from './utils/authenticate-xhr.backend';
 import { AppRoutingModule } from './app-routing.module';
+import { UserPokemonsPipe } from './utils/user-pokemons.pipe';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AppRoutingModule } from './app-routing.module';
     FacebookLoginComponent,
     AuthHomeComponent,
     EmailValidator,
+    UserPokemonsPipe,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
