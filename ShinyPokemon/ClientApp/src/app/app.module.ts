@@ -7,7 +7,6 @@ import { HttpModule, XHRBackend } from '@angular/http';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomePokemonComponent } from './home-pokemon/home-pokemon.component';
-import { HomeMenuComponent } from './home-menu/home-menu.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { ScrollTopComponent } from './scroll-top/scroll-top.component';
 import { SearchPipe } from './pipes/search.pipe';
@@ -24,13 +23,13 @@ import { ProfileService } from './services/profile.service';
 import { AuthenticateXHRBackend } from './auths/authenticate-xhr.backend';
 import { AppRoutingModule } from './app-routing.module';
 import { UserPokemonsPipe } from './pipes/user-pokemons.pipe';
+import { GenerationPipe } from './pipes/generation.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomePokemonComponent,
-    HomeMenuComponent,
     PokemonDetailComponent,
     ScrollTopComponent,
     SearchPipe,
@@ -40,6 +39,7 @@ import { UserPokemonsPipe } from './pipes/user-pokemons.pipe';
     AuthHomeComponent,
     EmailValidator,
     UserPokemonsPipe,
+    GenerationPipe,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

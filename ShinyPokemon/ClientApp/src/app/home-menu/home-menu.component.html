@@ -1,9 +1,0 @@
-<div class="container-fluid">
-  <nav class="navbar navbar-default">
-    <ul class="nav navbar-nav" id="menu">
-      <li *ngFor="let gen of generations" [class.selected]="gen === selectedGen" (click)="onSelected(gen)">
-        <a (click)="showGeneration(gen)" >Gen {{gen}}</a>
-      </li>
-    </ul>
-  </nav>
-</div>

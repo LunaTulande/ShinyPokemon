@@ -1,4 +1,12 @@
-<app-home-menu [shinyPokemonList]="shinyPokemonList" (listToShow)="setListToShow($event)"></app-home-menu>
+<header class="container-fluid">
+  <nav class="navbar navbar-default">
+    <ul class="nav navbar-nav" id="menu">
+      <li *ngFor="let gen of generations" [class.selected]="gen === selectedGen"  (click)="setGen(gen)">
+        <a>Gen {{gen}}</a>
+      </li>
+    </ul>
+  </nav>
+</header>
 
 <main>
   <form>
@@ -24,7 +32,7 @@
     </div>
 
     <div *ngIf="!loading">
-      <div *ngFor="let pokemon of showList | userPokemons:[showUserPokemons,userIdPokemons,isLogged] | search:search"
+      <div *ngFor="let pokemon of shinyPokemonList | generation:selectedGen | userPokemons:[showUserPokemons,userIdPokemons,isLogged] | search:search"
         id="pokemons">
         <div class="thumbnail" [ngClass]="{'logged': isLogged && !isPokemonRegistered(pokemon.idpokemon),
                     'registered': isLogged && isPokemonRegistered(pokemon.idpokemon)}">

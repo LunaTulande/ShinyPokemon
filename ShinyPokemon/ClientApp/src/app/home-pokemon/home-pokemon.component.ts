@@ -13,9 +13,9 @@ import { AuthHome } from '../interfaces/auth-home';
 })
 
 export class HomePokemonComponent implements OnInit {
-  shinyPokemonList: Pokemon[]; //first list
-  showList: Pokemon[]; //List to show
+  shinyPokemonList: Pokemon[]; 
   subtitle: string = '';
+
   search: string = '';
   loading: boolean;
   subscription: Subscription;
@@ -23,6 +23,9 @@ export class HomePokemonComponent implements OnInit {
   userDetails: AuthHome;
   userIdPokemons: number[] = [];
   showUserPokemons: boolean = false;
+
+  selectedGen: number = 0;
+  generations: number[] = [1, 2, 3, 4];
 
   constructor(private pokemonService: PokemonService,
     private loginService: LoginService, private profileService: ProfileService) { }
@@ -37,15 +40,19 @@ export class HomePokemonComponent implements OnInit {
     this.pokemonService.getPokemons().subscribe(data => {
       this.loading = false;
       this.shinyPokemonList = data;
-      this.showList = this.shinyPokemonList;
     });
   }
 
-  setListToShow(eventValue): void {
-    this.showList = eventValue.showList;
-    this.subtitle = eventValue.subtitle;
+  setGen(gen:number):void{
+    if (this.selectedGen == gen) {
+      this.selectedGen = 0;
+      this.subtitle = '';
+    } else {
+      this.selectedGen = gen;
+      this.subtitle = 'Gen ' + gen;
+    }
   }
-
+  
   getLoginSubscription(): Subscription {
     return this.loginService.authNavStatus$.subscribe(
       (status) => {
